@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
-        rb.mass = data.Mass;
+        rb.mass = data.Mass; // for tuning
         reboundBehaviour.Tick();
     }
 
