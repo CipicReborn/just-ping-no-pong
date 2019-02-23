@@ -24,8 +24,14 @@ public class Ball : MonoBehaviour
         reboundBehaviour.Tick();
     }
 
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void Reset()
     {
+        gameObject.SetActive(true);
         ResetTransform();
         ResetPhysics();
     }

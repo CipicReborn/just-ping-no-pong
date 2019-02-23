@@ -51,6 +51,14 @@ public class GameManager : MonoBehaviour
         UIManager.UpdateScoreGUI(scored, score, worldPosition);
     }
 
+    public void TriggerGameOver()
+    {
+        Debug.Log("Triggered");
+        UIManager.GameOver();
+        Ball.Disable();
+        isGameOver = true;
+    }
+
     // API USED BY INPUT EVENTS
     public void ResetGame()
     {
@@ -62,6 +70,11 @@ public class GameManager : MonoBehaviour
     // GAME LOGIC, IMPLEM
     private void Update()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         Pad.Tick(Time.deltaTime);
         Ball.Tick(Time.deltaTime);
 
@@ -78,10 +91,12 @@ public class GameManager : MonoBehaviour
     private GameWorldBoundaries gameWorldBoundaries;
     private IPadInput padInput;
     private int score;
+    private bool isGameOver;
 
     private void ResetGameWorld()
     {
         score = 0;
+        isGameOver = false;
         Pad.Reset();
         Ball.Reset();
     }

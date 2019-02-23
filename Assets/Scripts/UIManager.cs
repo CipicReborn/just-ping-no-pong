@@ -12,10 +12,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Animator scoreAnimator;
     [SerializeField]
+    private Animator gameOverAnimator;
+    [SerializeField]
     private new Camera camera;
 
     private TextMeshProUGUI scoreText;
     private readonly int scoreAnimationHash = Animator.StringToHash("ScoreAnimation");
+    private readonly int gameOverHash = Animator.StringToHash("GameOverAnimation");
 
     private void Awake()
     {
@@ -36,5 +39,10 @@ public class UIManager : MonoBehaviour
     public void UpdatePadGUI(float normalisedPadPosition)
     {
         handleGUI.UpdatePadUIFeedback(normalisedPadPosition);
+    }
+
+    public void GameOver()
+    {
+        gameOverAnimator.Play(gameOverHash, 0, 0);
     }
 }

@@ -18,6 +18,12 @@ public class WallsRebound : MonoBehaviour
 
     public void Tick()
     {
+        if (transform.position.y < 0)
+        {
+            gameManager.TriggerGameOver();
+            return;
+        }
+
         //Debug.Log(transform.position.x + ", " + rb.velocity.x);
         if (transform.position.x < -xMax && rb.velocity.x < 0 ||
             transform.position.x > xMax && rb.velocity.x > 0)
