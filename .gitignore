@@ -35,3 +35,5 @@ sysinfo.txt
 *.apk
 *.unitypackage
 .gradle/
+Assets/TextMesh Pro/Examples & Extras/
+Assets/TextMesh Pro/Examples & Extras.meta
