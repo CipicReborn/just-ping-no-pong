@@ -38,17 +38,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Pad.Init(this, padInput, PadData, gameWorldBoundaries, PadStartTransform);
-        Ball.Init(ballData, gameWorldBoundaries, BallStartTransform);
+        Ball.Init(this, ballData, gameWorldBoundaries, BallStartTransform);
         ResetGame();
     }
 #endregion
 
     #region UNITY LOOP
     // API USED BY PHYSICS COMPONENTS
-    public void AddOneToScore()
+    public void AddScore(int scored, Vector3 worldPosition)
     {
-        score++;
-        UIManager.UpdateScoreGUI(score);
+        score += scored;
+        UIManager.UpdateScoreGUI(scored, score, worldPosition);
     }
 
     // API USED BY INPUT EVENTS
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetUI()
     {
-        UIManager.UpdateScoreGUI(score);
+        UIManager.UpdateScoreGUI(0, score, Vector3.zero);
         UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
     }
 }

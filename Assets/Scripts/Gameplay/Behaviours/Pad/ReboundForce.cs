@@ -16,7 +16,7 @@ public class ReboundForce : MonoBehaviour
         if(col.gameObject.name == "Ball")
         {
             col.rigidbody.AddForce(Vector3.up * data.ReboundForce);
-            gameManager.AddOneToScore();
+            gameManager.AddScore(1, transform.position);
         }
     }
 }

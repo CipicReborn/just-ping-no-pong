@@ -2,11 +2,13 @@
 
 public class WallsRebound : MonoBehaviour
 {
+    GameManager gameManager;
     Rigidbody rb;
     float xMax;
 
-    public void Init(float screenRightLimit)
+    public void Init(GameManager gm, float screenRightLimit)
     {
+        gameManager = gm;
         xMax = screenRightLimit - (transform.localScale.x / 2.0f);
         rb = GetComponent<Rigidbody>();
         //Debug.Log("Walls Rebound Initialised");
@@ -22,6 +24,7 @@ public class WallsRebound : MonoBehaviour
         {
             //Debug.Log("Wall Hit");
             rb.velocity = new Vector3(-rb.velocity.x, rb.velocity.y, rb.velocity.z);
+            gameManager.AddScore(3, transform.position);
         }
     }
 }

@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
     private Transform startTransform;
     private BallData data;
 
-    public void Init(BallData data, GameWorldBoundaries gameWorldBoundaries, Transform startTransform)
+    public void Init(GameManager gm, BallData data, GameWorldBoundaries gameWorldBoundaries, Transform startTransform)
     {
         this.startTransform = startTransform;
         this.data = data;
@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
         rb.mass = data.Mass;
         transform.localScale = new Vector3(data.Radius, data.Radius, data.Radius);
         reboundBehaviour = GetComponent<WallsRebound>();
-        reboundBehaviour.Init(gameWorldBoundaries.ScreenRightLimit);
+        reboundBehaviour.Init(gm, gameWorldBoundaries.ScreenRightLimit);
     }
 
     public void Tick(float deltaTime)
