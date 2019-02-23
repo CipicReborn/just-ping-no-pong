@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,19 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private BallData ballData;
     [SerializeField]
-    private Text ScoreTextGUI;
-    [SerializeField]
-    private HandleUI handleGUI;
-    [SerializeField]
     private Transform PadStartTransform;
     [SerializeField]
     private Transform BallStartTransform;
     [SerializeField]
     private new Camera camera;
+    [SerializeField]
+    private UIManager UIManager;
     #endregion
-
-    private GameWorldBoundaries gameWorldBoundaries;
-    private WallsRebound ball;
 
     #region UNITY INITIALISATION
 
@@ -49,12 +43,12 @@ public class GameManager : MonoBehaviour
     }
 #endregion
 
-#region UNITY LOOP
+    #region UNITY LOOP
     // API USED BY PHYSICS COMPONENTS
     public void AddOneToScore()
     {
         score++;
-        UpdateScoreGUI();
+        UIManager.UpdateScoreGUI(score);
     }
 
     // API USED BY INPUT EVENTS
@@ -73,14 +67,17 @@ public class GameManager : MonoBehaviour
 
         if (padInput.InputPressed)
         {
-            UpdatePadGUI();
+            UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
         }
     }
 
     #endregion
 
-    private int score;
+
+
+    private GameWorldBoundaries gameWorldBoundaries;
     private IPadInput padInput;
+    private int score;
 
     private void ResetGameWorld()
     {
@@ -91,19 +88,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetUI()
     {
-        UpdateScoreGUI();
-        UpdatePadGUI();
+        UIManager.UpdateScoreGUI(score);
+        UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
     }
-
-    private void UpdatePadGUI()
-    {
-        var padPosition = Pad.GetNormalisedXPosition();
-        handleGUI.UpdatePadUIFeedback(padPosition);
-    }
-
-    private void UpdateScoreGUI()
-    {
-        ScoreTextGUI.text = score.ToString();
-    }
-
 }
