@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     #region INJECTION VIA UNITY INSPECTOR
-    #pragma warning disable CS0649
+    #pragma warning disable CS0649 // Disable warning "variable never initialized"
+    #pragma warning disable IDE0044 // Disable recommendation "Add readonly modifier"
 
     [SerializeField]
     private PadMover Pad;
