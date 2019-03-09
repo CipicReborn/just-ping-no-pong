@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FirstPad
   m_EditorClassIdentifier: 
   LerpFactor: 0.2
-  MaximumZRotation: 8
+  MaximumZRotation: 18
   ZRotationSpeed: 0.8
   ReboundForce: 14
   PadLength: 0.75
