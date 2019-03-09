@@ -70,13 +70,12 @@ public class GameManager : MonoBehaviour
     // GAME LOGIC, IMPLEM
     private void Update()
     {
-        if (isGameOver)
-        {
-            return;
-        }
-
         Pad.Tick(Time.deltaTime);
-        Ball.Tick(Time.deltaTime);
+
+        if (!isGameOver)
+        {
+            Ball.Tick(Time.deltaTime);
+        }
 
         if (padInput.InputPressed)
         {
