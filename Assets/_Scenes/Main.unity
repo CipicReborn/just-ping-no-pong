@@ -2593,10 +2593,10 @@ MonoBehaviour:
   Pad: {fileID: 2123252681}
   PadData: {fileID: 11400000, guid: aec4aa12bc4555944bad952a27b7c857, type: 2}
   Ball: {fileID: 915107262}
-  ballData: {fileID: 11400000, guid: 5805165edaad8fa4f98d04ea88c4275e, type: 2}
+  BallData: {fileID: 11400000, guid: 5805165edaad8fa4f98d04ea88c4275e, type: 2}
   PadStartTransform: {fileID: 115861203}
   BallStartTransform: {fileID: 559530114}
-  camera: {fileID: 534669904}
+  Camera: {fileID: 534669904}
   UIManager: {fileID: 2126517012}
 --- !u!4 &614141974
 Transform:
@@ -3804,7 +3804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895400c289bce2f468f4b2356374fb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handleTransform: {fileID: 985706144}
+  HandleTransform: {fileID: 0}
 --- !u!1 &1102597377
 GameObject:
   m_ObjectHideFlags: 0
@@ -5448,7 +5448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895400c289bce2f468f4b2356374fb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handleTransform: {fileID: 1727053656}
+  HandleTransform: {fileID: 1727053656}
 --- !u!1 &1727053655
 GameObject:
   m_ObjectHideFlags: 0
@@ -6722,11 +6722,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreTextGUI: {fileID: 684082181}
-  handleGUI: {fileID: 1724376131}
-  scoreAnimator: {fileID: 1352050786}
-  gameOverAnimator: {fileID: 1041636462}
-  camera: {fileID: 534669904}
-  pauseModal: {fileID: 102201500}
+  HandleGUI: {fileID: 1724376131}
+  ScoreAnimator: {fileID: 1352050786}
+  GameOverAnimator: {fileID: 1041636462}
+  Camera: {fileID: 534669904}
+  PauseModal: {fileID: 102201500}
 --- !u!1 &2132131778
 GameObject:
   m_ObjectHideFlags: 0
