@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Pad", menuName ="Gameplay/New Pad Data")]
+[CreateAssetMenu(fileName = "Pad", menuName ="Just Ping No Pong/Gameplay/New Pad Data")]
 public class PadData : ScriptableObject
 {
     [Header("Handling")]
