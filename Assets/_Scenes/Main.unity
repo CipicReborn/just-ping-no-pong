@@ -1987,7 +1987,7 @@ GameObject:
   - component: {fileID: 538792720}
   - component: {fileID: 538792719}
   - component: {fileID: 538792718}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RaycastPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2561,7 +2561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5.9000244}
+  m_AnchoredPosition: {x: 0, y: -5.8999023}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &685580516
@@ -6348,7 +6348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2089825719
 RectTransform:
   m_ObjectHideFlags: 0
