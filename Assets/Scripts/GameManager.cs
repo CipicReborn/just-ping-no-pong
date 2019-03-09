@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     #pragma warning restore CS0649
     #endregion
 
-    #region UNITY INITIALISATION
+    #region UNITY
 
     void Awake()
     {
@@ -45,11 +45,10 @@ public class GameManager : MonoBehaviour
     {
         Pad.Init(this, padInput, PadData, gameWorldBoundaries, PadStartTransform);
         Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
-        ResetGame();
+        ShowTips();
+        //ResetGame();
     }
-#endregion
 
-    #region UNITY LOOP
     // API USED BY PHYSICS COMPONENTS
     public void AddScore(int scored, Vector3 worldPosition)
     {
@@ -59,10 +58,10 @@ public class GameManager : MonoBehaviour
 
     public void TriggerGameOver()
     {
-        Debug.Log("Triggered Game Over");
         UIManager.GameOver();
         Ball.Disable();
         gameIsOver = true;
+        Debug.Log("Triggered Game Over");
     }
 
     // API USED BY INPUT EVENTS
@@ -86,6 +85,13 @@ public class GameManager : MonoBehaviour
         ResetUI();
         ResumeGameplay();
         Debug.Log("Game Started");
+    }
+
+    public void CloseTips()
+    {
+        UIManager.HideTips();
+        ResetGame();
+        // UIManager.ShowMission();
     }
 
     public void Quit()
@@ -145,9 +151,15 @@ public class GameManager : MonoBehaviour
         gameIsPaused = true;
         Ball.DisablePhysics();
     }
+
     private void ResumeGameplay()
     {
         gameIsPaused = false;
         Ball.EnablePhysics();
+    }
+
+    private void ShowTips()
+    {
+        UIManager.ShowTips();
     }
 }

@@ -19,6 +19,7 @@ public class Ball : MonoBehaviour
         transform.localScale = new Vector3(data.Radius, data.Radius, data.Radius);
         reboundBehaviour = GetComponent<WallsRebound>();
         reboundBehaviour.Init(gm, gameWorldBoundaries.ScreenRightLimit);
+        DisablePhysics();
     }
 
     public void Tick(float deltaTime)

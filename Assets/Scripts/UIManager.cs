@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     #region INJECTION VIA UNITY INSPECTOR
-    #pragma warning disable CS0649
+#pragma warning disable CS0649
 
     [SerializeField]
-    private Text ScoreTextGUI;
+    private TextMeshProUGUI ScoreTextGUI;
     [SerializeField]
     private HandleUI HandleGUI;
     [SerializeField]
@@ -20,8 +20,13 @@ public class UIManager : MonoBehaviour
     private Camera Camera;
     [SerializeField]
     private GameObject PauseModal;
+    [Header("Tips")]
+    [SerializeField]
+    private GameObject TipsCanvas;
+    [SerializeField]
+    private GameObject TipsBasic;
 
-    #pragma warning restore CS0649
+#pragma warning restore CS0649
     #endregion
 
     private TextMeshProUGUI scoreText;
@@ -64,6 +69,21 @@ public class UIManager : MonoBehaviour
         PauseModal.SetActive(false);
     }
 
+    public void ShowTips()
+    {
+        TipsBasic.SetActive(true);
+        TipsCanvas.SetActive(true);
+    }
+
+    public void HideTips()
+    {
+        TipsCanvas.SetActive(false);
+    }
+
+    public void ShowMission()
+    {
+        
+    }
     public void GameOver()
     {
         GameOverAnimator.Play(gameOverHash, 0, 0);
