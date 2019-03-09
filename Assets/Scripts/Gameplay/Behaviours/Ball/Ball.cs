@@ -7,6 +7,9 @@ public class Ball : MonoBehaviour
     private Transform startTransform;
     private BallData data;
 
+    private Vector3 velocityBeforePause;
+    private Vector3 angularVelocityBeforePause;
+
     public void Init(GameManager gm, BallData data, GameWorldBoundaries gameWorldBoundaries, Transform startTransform)
     {
         this.startTransform = startTransform;
@@ -29,12 +32,26 @@ public class Ball : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void EnablePhysics()
+    {
+        rb.isKinematic = false;
+        rb.velocity = velocityBeforePause;
+        rb.angularVelocity = angularVelocityBeforePause;
+    }
+    public void DisablePhysics()
+    {
+        velocityBeforePause = rb.velocity;
+        angularVelocityBeforePause = rb.angularVelocity;
+        rb.isKinematic = true;
+    }
+
     public void Reset()
     {
         gameObject.SetActive(true);
-        ResetTransform();
         ResetPhysics();
+        ResetTransform();
     }
+
 
     private void ResetTransform()
     {
@@ -46,5 +63,7 @@ public class Ball : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        velocityBeforePause = Vector3.zero;
+        angularVelocityBeforePause = Vector3.zero;
     }
 }

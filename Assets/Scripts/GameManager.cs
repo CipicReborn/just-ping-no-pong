@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,23 +60,48 @@ public class GameManager : MonoBehaviour
         Debug.Log("Triggered");
         UIManager.GameOver();
         Ball.Disable();
-        isGameOver = true;
+        gameIsOver = true;
     }
 
     // API USED BY INPUT EVENTS
+    public void PauseGame()
+    {
+        PauseGameplay();
+        UIManager.ShowPause();
+        Debug.Log("Game Paused");
+    }
+
+    public void ResumeGame()
+    {
+        ResumeGameplay();
+        UIManager.HidePause();
+        Debug.Log("Game Resumed");
+    }
+
     public void ResetGame()
     {
         ResetGameWorld();
         ResetUI();
+        ResumeGameplay();
         Debug.Log("Game Started");
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     // GAME LOGIC, IMPLEM
     private void Update()
     {
+        if (gameIsPaused)
+        {
+            return;
+        }
+
         Pad.Tick(Time.deltaTime);
 
-        if (!isGameOver)
+        if (!gameIsOver)
         {
             Ball.Tick(Time.deltaTime);
         }
@@ -93,12 +119,14 @@ public class GameManager : MonoBehaviour
     private GameWorldBoundaries gameWorldBoundaries;
     private IPadInput padInput;
     private int score;
-    private bool isGameOver;
+
+    private bool gameIsPaused;
+    private bool gameIsOver;
 
     private void ResetGameWorld()
     {
         score = 0;
-        isGameOver = false;
+        gameIsOver = false;
         Pad.Reset();
         Ball.Reset();
     }
@@ -107,5 +135,17 @@ public class GameManager : MonoBehaviour
     {
         UIManager.UpdateScoreGUI(0, score, Vector3.zero);
         UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
+        UIManager.ClosePopups();
+    }
+
+    private void PauseGameplay()
+    {
+        gameIsPaused = true;
+        Ball.DisablePhysics();
+    }
+    private void ResumeGameplay()
+    {
+        gameIsPaused = false;
+        Ball.EnablePhysics();
     }
 }

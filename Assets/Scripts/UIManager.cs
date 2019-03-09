@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     private Animator gameOverAnimator;
     [SerializeField]
     private new Camera camera;
+    [SerializeField]
+    private GameObject pauseModal;
 
     #pragma warning restore CS0649
     #endregion
@@ -45,6 +47,21 @@ public class UIManager : MonoBehaviour
     public void UpdatePadGUI(float normalisedPadPosition)
     {
         handleGUI.UpdatePadUIFeedback(normalisedPadPosition);
+    }
+
+    public void ClosePopups()
+    {
+        pauseModal.SetActive(false);
+    }
+
+    public void ShowPause()
+    {
+        pauseModal.SetActive(true);
+    }
+
+    public void HidePause()
+    {
+        pauseModal.SetActive(false);
     }
 
     public void GameOver()
