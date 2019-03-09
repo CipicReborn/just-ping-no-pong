@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerGameOver()
     {
-        Debug.Log("Triggered");
+        Debug.Log("Triggered Game Over");
         UIManager.GameOver();
         Ball.Disable();
         gameIsOver = true;
