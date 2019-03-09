@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    #region INJECTION VIA UNITY INSPECTOR
+    #pragma warning disable CS0649
+
     [SerializeField]
     private Text ScoreTextGUI;
     [SerializeField]
@@ -15,6 +18,9 @@ public class UIManager : MonoBehaviour
     private Animator gameOverAnimator;
     [SerializeField]
     private new Camera camera;
+
+    #pragma warning restore CS0649
+    #endregion
 
     private TextMeshProUGUI scoreText;
     private readonly int scoreAnimationHash = Animator.StringToHash("ScoreAnimation");

@@ -3,6 +3,7 @@
 public class GameManager : MonoBehaviour
 {
     #region INJECTION VIA UNITY INSPECTOR
+    #pragma warning disable CS0649
 
     [SerializeField]
     private PadMover Pad;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     private new Camera camera;
     [SerializeField]
     private UIManager UIManager;
+
+    #pragma warning restore CS0649
     #endregion
 
     #region UNITY INITIALISATION

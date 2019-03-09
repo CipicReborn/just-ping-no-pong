@@ -2,8 +2,15 @@
 
 public class HandleUI : MonoBehaviour
 {
+    #region INJECTION VIA UNITY INSPECTOR
+    #pragma warning disable CS0649
+
     [SerializeField]
     private RectTransform handleTransform;
+    
+    #pragma warning restore CS0649
+    #endregion
+
     private new RectTransform transform;
 
     private void Awake()
