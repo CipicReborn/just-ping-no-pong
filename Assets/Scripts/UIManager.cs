@@ -11,15 +11,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text ScoreTextGUI;
     [SerializeField]
-    private HandleUI handleGUI;
+    private HandleUI HandleGUI;
     [SerializeField]
-    private Animator scoreAnimator;
+    private Animator ScoreAnimator;
     [SerializeField]
-    private Animator gameOverAnimator;
+    private Animator GameOverAnimator;
     [SerializeField]
-    private new Camera camera;
+    private Camera Camera;
     [SerializeField]
-    private GameObject pauseModal;
+    private GameObject PauseModal;
 
     #pragma warning restore CS0649
     #endregion
@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        scoreText = scoreAnimator.GetComponent<TextMeshProUGUI>();
+        scoreText = ScoreAnimator.GetComponent<TextMeshProUGUI>();
     }
 
     public void UpdateScoreGUI(int scored, int totalScore, Vector3 worldPosition)
@@ -38,34 +38,34 @@ public class UIManager : MonoBehaviour
         ScoreTextGUI.text = totalScore.ToString();
         if (scored > 0)
         {
-            scoreAnimator.transform.position = camera.WorldToScreenPoint(worldPosition);
+            ScoreAnimator.transform.position = Camera.WorldToScreenPoint(worldPosition);
             scoreText.text = string.Format("+{0}", scored);
-            scoreAnimator.Play(scoreAnimationHash, 0, 0);
+            ScoreAnimator.Play(scoreAnimationHash, 0, 0);
         }
     }
 
     public void UpdatePadGUI(float normalisedPadPosition)
     {
-        handleGUI.UpdatePadUIFeedback(normalisedPadPosition);
+        HandleGUI.UpdatePadUIFeedback(normalisedPadPosition);
     }
 
     public void ClosePopups()
     {
-        pauseModal.SetActive(false);
+        PauseModal.SetActive(false);
     }
 
     public void ShowPause()
     {
-        pauseModal.SetActive(true);
+        PauseModal.SetActive(true);
     }
 
     public void HidePause()
     {
-        pauseModal.SetActive(false);
+        PauseModal.SetActive(false);
     }
 
     public void GameOver()
     {
-        gameOverAnimator.Play(gameOverHash, 0, 0);
+        GameOverAnimator.Play(gameOverHash, 0, 0);
     }
 }

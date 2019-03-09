@@ -6,7 +6,7 @@ public class HandleUI : MonoBehaviour
     #pragma warning disable CS0649
 
     [SerializeField]
-    private RectTransform handleTransform;
+    private RectTransform HandleTransform;
     
     #pragma warning restore CS0649
     #endregion
@@ -27,7 +27,7 @@ public class HandleUI : MonoBehaviour
         //Debug.Log("Clamped position : " + clampedPosition.ToString());
         var rescaledPosition = clampedPosition * (transform.anchorMax.x - transform.anchorMin.x) + transform.anchorMin.x;
         //Debug.Log("Rescaled position : " + rescaledPosition.ToString());
-        handleTransform.anchorMin = new Vector2(rescaledPosition, 0);
-        handleTransform.anchorMax = new Vector2(rescaledPosition, 1);
+        HandleTransform.anchorMin = new Vector2(rescaledPosition, 0);
+        HandleTransform.anchorMax = new Vector2(rescaledPosition, 1);
     }
 }

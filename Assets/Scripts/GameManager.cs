@@ -13,16 +13,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Ball Ball;
     [SerializeField]
-    private BallData ballData;
+    private BallData BallData;
     [SerializeField]
     private Transform PadStartTransform;
     [SerializeField]
     private Transform BallStartTransform;
     [SerializeField]
-    private new Camera camera;
+    private Camera Camera;
     [SerializeField]
     private UIManager UIManager;
 
+    #pragma warning restore IDE0044
     #pragma warning restore CS0649
     #endregion
 
@@ -36,13 +37,13 @@ public class GameManager : MonoBehaviour
 #else
         padInput = new TouchPadLateralInput();
 #endif
-        gameWorldBoundaries = new GameWorldBoundaries(camera);
+        gameWorldBoundaries = new GameWorldBoundaries(Camera);
     }
 
     void Start()
     {
         Pad.Init(this, padInput, PadData, gameWorldBoundaries, PadStartTransform);
-        Ball.Init(this, ballData, gameWorldBoundaries, BallStartTransform);
+        Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
         ResetGame();
     }
 #endregion
