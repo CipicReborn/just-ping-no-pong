@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     #region INJECTION VIA UNITY INSPECTOR
-    #pragma warning disable CS0649 // Disable warning "variable never initialized"
-    #pragma warning disable IDE0044 // Disable recommendation "Add readonly modifier"
+#pragma warning disable CS0649 // Disable warning "variable never initialized"
+#pragma warning disable IDE0044 // Disable recommendation "Add readonly modifier"
 
+    [SerializeField]
+    private GameData PlayerData;
+    [SerializeField]
+    private GameDesignData GameDesignData;
     [SerializeField]
     private PadMover Pad;
     [SerializeField]
@@ -24,15 +29,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIManager UIManager;
 
-    #pragma warning restore IDE0044
-    #pragma warning restore CS0649
+#pragma warning restore IDE0044
+#pragma warning restore CS0649
     #endregion
 
     #region UNITY
 
+    private GUIStyle debugGUIStyle = new GUIStyle();
     void Awake()
     {
         Application.targetFrameRate = 60;
+        debugGUIStyle.normal.textColor = Color.black;
+        debugGUIStyle.fontSize = 50;
+        debugGUIStyle.padding = new RectOffset(20, 0, 20, 0);
+
 #if UNITY_EDITOR
         padInput = new MousePadLateralInput();
 #else
@@ -45,15 +55,27 @@ public class GameManager : MonoBehaviour
     {
         Pad.Init(this, padInput, PadData, gameWorldBoundaries, PadStartTransform);
         Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
+        UIManager.Init(this);
+        mission = GameDesignData.Missions[0];
         ShowTips();
-        //ResetGame();
     }
 
-    // API USED BY PHYSICS COMPONENTS
-    public void AddScore(int scored, Vector3 worldPosition)
+    private void OnGUI()
     {
-        score += scored;
-        UIManager.UpdateScoreGUI(scored, score, worldPosition);
+
+        GUILayout.Label((1.0 / Time.deltaTime).ToString("0.0"), debugGUIStyle);
+    }
+    // API USED BY PHYSICS COMPONENTS
+    public void AddScoreForWalls(Vector3 worldPosition)
+    {
+        score += scoreForWalls;
+        UIManager.UpdateScoreGUI(scoreForWalls, score, worldPosition);
+    }
+
+    public void AddScoreForRebound(Vector3 worldPosition)
+    {
+        score += scoreForRebounds;
+        UIManager.UpdateScoreGUI(scoreForRebounds, score, worldPosition);
     }
 
     public void TriggerGameOver()
@@ -64,25 +86,38 @@ public class GameManager : MonoBehaviour
         Debug.Log("Triggered Game Over");
     }
 
+    public void ProcessResults()
+    {
+        UIManager.ShowResults(mission, score, score >= mission.ScoreTarget);
+        Debug.Log("Results Processed");
+    }
+
     // API USED BY INPUT EVENTS
     public void PauseGame()
     {
+        if (gameIsOver) return;
         PauseGameplay();
         UIManager.ShowPause();
         Debug.Log("Game Paused");
     }
 
+    public void ShowRestartMenu()
+    {
+        UIManager.ShowMenu();
+        Debug.LogWarning("Restart Menu WIP");
+    }
+
     public void ResumeGame()
     {
         ResumeGameplay();
-        UIManager.HidePause();
+        UIManager.ClosePopups();
         Debug.Log("Game Resumed");
     }
 
     public void ResetGame()
     {
         ResetGameWorld();
-        ResetUI();
+        UIManager.Reset();
         ResumeGameplay();
         Debug.Log("Game Started");
     }
@@ -90,8 +125,7 @@ public class GameManager : MonoBehaviour
     public void CloseTips()
     {
         UIManager.HideTips();
-        ResetGame();
-        // UIManager.ShowMission();
+        UIManager.ShowMission(mission);
     }
 
     public void Quit()
@@ -102,18 +136,29 @@ public class GameManager : MonoBehaviour
     // GAME LOGIC, IMPLEM
     private void Update()
     {
-        if (gameIsPaused)
-        {
-            return;
-        }
-
-        Pad.Tick(Time.deltaTime);
+        if (gameIsPaused) return;
+        
+        // INPUT
+        padInput.Refresh();
+        
+        // GAME OBJECTS
+        Pad.Tick(Time.deltaTime); // let the player manipulate the pad even after game over
 
         if (!gameIsOver)
         {
             Ball.Tick(Time.deltaTime);
         }
 
+        // GAME RULES
+        if (!targetReached && score >= mission.ScoreTarget)
+        {
+            Debug.Log("Success " + score + " of " + mission.ScoreTarget + "!");
+            targetReached = true;
+            UIManager.ShowTargetReachedFeedback();
+        }
+
+
+        // UI
         if (padInput.InputPressed)
         {
             UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
@@ -129,21 +174,20 @@ public class GameManager : MonoBehaviour
     private int score;
 
     private bool gameIsPaused;
-    private bool gameIsOver;
+    private bool gameIsOver = true;
+
+    private Mission mission;
+    private int scoreForWalls = 0;
+    private int scoreForRebounds = 1;
+    private bool targetReached;
 
     private void ResetGameWorld()
     {
         score = 0;
+        targetReached = false;
         gameIsOver = false;
         Pad.Reset();
         Ball.Reset();
-    }
-
-    private void ResetUI()
-    {
-        UIManager.UpdateScoreGUI(0, score, Vector3.zero);
-        UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
-        UIManager.ClosePopups();
     }
 
     private void PauseGameplay()

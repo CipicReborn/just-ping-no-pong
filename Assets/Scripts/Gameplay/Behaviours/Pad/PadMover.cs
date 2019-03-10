@@ -42,7 +42,6 @@ public class PadMover : MonoBehaviour
 
     public void Tick(Single deltaTime)
     {
-        input.Refresh();
         if (input.InputPressed)
         {
             GoToTargetPosition();

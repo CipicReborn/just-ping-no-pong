@@ -30,7 +30,7 @@ public class WallsRebound : MonoBehaviour
         {
             //Debug.Log("Wall Hit");
             rb.velocity = new Vector3(-rb.velocity.x, rb.velocity.y, rb.velocity.z);
-            gameManager.AddScore(3, transform.position);
+            gameManager.AddScoreForWalls(transform.position);
         }
     }
 }
