@@ -24,7 +24,9 @@ public class Ball : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
+#if UNITY_EDITOR
         rb.mass = data.Mass; // for tuning
+#endif
         reboundBehaviour.Tick();
     }
 
