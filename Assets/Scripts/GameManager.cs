@@ -1,6 +1,5 @@
 ﻿using JustPingNoPong.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, IGameManager
 {
@@ -116,11 +115,6 @@ public class GameManager : MonoBehaviour, IGameManager
     #endregion
 
 
-
-    public void Quit()
-    {
-        SceneManager.LoadScene("Menu");
-    }
 
 
 

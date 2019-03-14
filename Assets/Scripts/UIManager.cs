@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace JustPingNoPong.UI
@@ -80,6 +81,11 @@ namespace JustPingNoPong.UI
         private void HidePause()
         {
             PauseModal.SetActive(false);
+        }
+
+        public void Quit()
+        {
+            SceneManager.LoadScene("Menu");
         }
 
         public void ShowMenu()
