@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,11 +33,12 @@ public class UIManager : MonoBehaviour
     [Header("Missions")]
     [SerializeField]
     private MissionsUIController MissionCanvas;
+
 #pragma warning restore CS0649
     #endregion
 
     private TextMeshProUGUI scoreText;
-    private GameManager gameManager;
+    private IGameManager gameManager;
 
     private void Awake()
     {
@@ -70,7 +70,6 @@ public class UIManager : MonoBehaviour
     {
         HandleGUI.UpdatePadUIFeedback(normalisedPadPosition);
     }
-
 
     public void ShowPause()
     {
