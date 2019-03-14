@@ -111,14 +111,12 @@ public class GameManager : MonoBehaviour, IGameManager
         ResumeGameplay();
         Debug.Log("Game Started");
     }
-    
+
     #endregion
 
 
+    #region GAME LOGIC IMPLEM
 
-
-
-    // GAME LOGIC, IMPLEM
     private void Update()
     {
         if (gameIsPaused) return;
@@ -187,4 +185,6 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         UIManager.ShowTips();
     }
+
+    #endregion
 }
