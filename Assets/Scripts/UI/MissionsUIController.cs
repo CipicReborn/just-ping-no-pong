@@ -48,10 +48,13 @@ public class MissionsUIController : MonoBehaviour
     }
     private Mode mode;
     private GameManager gameManager;
+    private AudioSource winSound;
+
     private void Awake()
     {
         ClosePanels();
         gameObject.SetActive(true);
+        winSound = GetComponent<AudioSource>();
     }
 
     public void Init(GameManager gm)
@@ -79,6 +82,7 @@ public class MissionsUIController : MonoBehaviour
             //RewardBlock update
             UnlockedItemName.text = "You unlocked " + mission.Reward.Name;
             UnlockedItemImage.sprite = mission.Reward.Image;
+            winSound.Play();
         }
 
         RewardBlock.SetActive(success);
