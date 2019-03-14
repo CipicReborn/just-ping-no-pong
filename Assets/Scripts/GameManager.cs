@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour, IGameManager
     private Camera Camera;
     [SerializeField]
     private UIManager UIManager;
+    [SerializeField]
+    private HUD HUD;
 
 #pragma warning restore IDE0044
 #pragma warning restore CS0649
@@ -66,13 +68,13 @@ public class GameManager : MonoBehaviour, IGameManager
     public void AddScoreForRebound(Vector3 worldPosition)
     {
         score += scoreForRebounds;
-        UIManager.UpdateScoreGUI(scoreForRebounds, score, worldPosition);
+        HUD.UpdateScoreGUI(scoreForRebounds, score, worldPosition);
     }
 
     public void AddScoreForWalls(Vector3 worldPosition)
     {
         score += scoreForWalls;
-        UIManager.UpdateScoreGUI(scoreForWalls, score, worldPosition);
+        HUD.UpdateScoreGUI(scoreForWalls, score, worldPosition);
     }
 
     public void PauseGame()
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void TriggerGameOver()
     {
-        UIManager.GameOver();
+        HUD.GameOver();
         Ball.Disable();
         gameIsOver = true;
         Debug.Log("Triggered Game Over");
@@ -137,14 +139,14 @@ public class GameManager : MonoBehaviour, IGameManager
         {
             Debug.Log("Success " + score + " of " + CurrentMission.ScoreTarget + "!");
             targetReached = true;
-            UIManager.ShowTargetReachedFeedback();
+            HUD.ShowMissionSuccessFeedback();
         }
 
 
         // UI
         if (padInput.InputPressed)
         {
-            UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
+            HUD.UpdatePadGUI(Pad.GetNormalisedXPosition());
         }
     }
 

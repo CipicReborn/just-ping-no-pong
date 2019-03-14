@@ -1,8 +1,5 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace JustPingNoPong.UI
 {
@@ -13,64 +10,37 @@ namespace JustPingNoPong.UI
 
         [Header("In Game UI")]
         [SerializeField]
-        private TextMeshProUGUI ScoreTextGUI;
+        private HUD HUD;
+
+        [Header("Screens")]
         [SerializeField]
-        private HandleUI HandleGUI;
+        private TipsScreen TipsScreen;
+        [Header("Windows")]
         [SerializeField]
-        private Effect ScoreFeedback;
-        [SerializeField]
-        private Effect GameOverFeedback;
-        [SerializeField]
-        private Effect SuccessFeedback;
-        [SerializeField]
-        private Camera Camera;
+        private MissionsUIController MissionCanvas;
         [SerializeField]
         private GameObject PauseModal;
         [SerializeField]
         private GameObject MenuModal;
-        [Header("Tips")]
-        [SerializeField]
-        private TipsScreen TipsScreen;
-        [Header("Missions")]
-        [SerializeField]
-        private MissionsUIController MissionCanvas;
 
 #pragma warning restore CS0649
         #endregion
 
-        private TextMeshProUGUI scoreText;
+        
         private IGameManager gameManager;
 
         private void Awake()
         {
-            ScoreFeedback.gameObject.SetActive(true);
-            GameOverFeedback.gameObject.SetActive(true);
-            SuccessFeedback.gameObject.SetActive(true);
-            scoreText = ScoreFeedback.GetComponentInChildren<TextMeshProUGUI>();
+
             Reset();
         }
 
         public void Init(GameManager gm)
         {
             gameManager = gm;
+            HUD.Init(gm);
             MissionCanvas.Init(gm, this);
             TipsScreen.UIManager = this;
-        }
-
-        public void UpdateScoreGUI(int scored, int totalScore, Vector3 worldPosition)
-        {
-            ScoreTextGUI.text = totalScore.ToString();
-            if (scored > 0)
-            {
-                ScoreFeedback.transform.position = Camera.WorldToScreenPoint(worldPosition);
-                scoreText.text = string.Format("+{0}", scored);
-                ScoreFeedback.Play();
-            }
-        }
-
-        public void UpdatePadGUI(float normalisedPadPosition)
-        {
-            HandleGUI.UpdatePadUIFeedback(normalisedPadPosition);
         }
 
         public void ShowPause()
@@ -135,26 +105,9 @@ namespace JustPingNoPong.UI
             MissionCanvas.ClosePanels();
         }
 
-        public void ShowTargetReachedFeedback()
-        {
-            SuccessFeedback.Play();
-        }
-
-        public void GameOver()
-        {
-            GameOverFeedback.Play();
-            Invoke("OnGameOverEffectComplete", 3f);
-        }
-
-        public void OnGameOverEffectComplete()
-        {
-            gameManager.ProcessResults();
-        }
-
         public void Reset()
         {
-            UpdateScoreGUI(0, 0, Vector3.zero);
-            UpdatePadGUI(0.5f);
+            HUD.Reset();
             ClosePopups();
             HideMission();
             HideResults();
