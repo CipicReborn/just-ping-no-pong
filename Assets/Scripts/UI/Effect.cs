@@ -29,7 +29,7 @@ public class Effect : MonoBehaviour
 
     public void Play()
     {
-        animator.Play(animHash);
+        animator.Play(animHash, 0, 0);
         if (audioSource.clip != null)
             audioSource.Play();
     }
