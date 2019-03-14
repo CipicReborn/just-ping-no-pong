@@ -34,6 +34,8 @@ namespace JustPingNoPong.UI
 
         void Awake()
         {
+            ScoreBoardGUI.gameObject.SetActive(true);
+
             SuccessFeedback.gameObject.SetActive(true);
             GameOverFeedback.gameObject.SetActive(true);
             ScoreFeedback.gameObject.SetActive(true);
