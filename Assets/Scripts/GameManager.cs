@@ -122,12 +122,6 @@ public class GameManager : MonoBehaviour, IGameManager
         Debug.LogWarning("Restart Menu WIP");
     }
 
-    public void CloseTips()
-    {
-        UIManager.HideTips();
-        UIManager.ShowMission(CurrentMission);
-    }
-
     public void Quit()
     {
         SceneManager.LoadScene("Menu");

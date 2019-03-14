@@ -103,14 +103,20 @@ public class UIManager : MonoBehaviour
         TipsCanvas.SetActive(true);
     }
 
-    public void HideTips()
+    private void HideTips()
     {
         TipsCanvas.SetActive(false);
     }
 
-    public void ShowMission(Mission mission)
+    public void CloseTipsAndProceed()
     {
-        MissionCanvas.ShowMission(mission);
+        HideTips();
+        ShowMission();
+    }
+
+    public void ShowMission()
+    {
+        MissionCanvas.ShowMission(gameManager.CurrentMission);
     }
 
     public void HideMission()

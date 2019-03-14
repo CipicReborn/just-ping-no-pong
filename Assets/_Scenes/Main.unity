@@ -6336,8 +6336,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 614141973}
-        m_MethodName: CloseTips
+      - m_Target: {fileID: 2126517012}
+        m_MethodName: CloseTipsAndProceed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
