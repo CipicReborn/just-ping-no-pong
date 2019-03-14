@@ -117,12 +117,6 @@ public class GameManager : MonoBehaviour, IGameManager
 
 
 
-    public void ShowRestartMenu()
-    {
-        UIManager.ShowMenu();
-        Debug.LogWarning("Restart Menu WIP");
-    }
-
     public void Quit()
     {
         SceneManager.LoadScene("Menu");

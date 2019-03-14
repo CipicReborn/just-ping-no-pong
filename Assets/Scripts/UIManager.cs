@@ -52,7 +52,7 @@ namespace JustPingNoPong.UI
         public void Init(GameManager gm)
         {
             gameManager = gm;
-            MissionCanvas.Init(gm);
+            MissionCanvas.Init(gm, this);
             TipsScreen.UIManager = this;
         }
 
@@ -85,6 +85,7 @@ namespace JustPingNoPong.UI
         public void ShowMenu()
         {
             MenuModal.SetActive(true);
+            Debug.LogWarning("Restart Menu WIP");
         }
 
         private void HideMenu()

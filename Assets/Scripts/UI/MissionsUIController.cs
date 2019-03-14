@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using JustPingNoPong.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,6 +49,7 @@ public class MissionsUIController : MonoBehaviour
     }
     private Mode mode;
     private GameManager gameManager;
+    private UIManager UIManager;
     private AudioSource winSound;
 
     private void Awake()
@@ -57,9 +59,10 @@ public class MissionsUIController : MonoBehaviour
         winSound = GetComponent<AudioSource>();
     }
 
-    public void Init(GameManager gm)
+    public void Init(GameManager gm, UIManager um)
     {
         gameManager = gm;
+        UIManager = um;
     }
     public void ShowMission(Mission mission)
     {
@@ -103,7 +106,7 @@ public class MissionsUIController : MonoBehaviour
         else if (mode == Mode.Result)
         {
             Debug.Log("Calling Menu");
-            gameManager.ShowRestartMenu();
+            UIManager.ShowMenu();
         }
     }
 
