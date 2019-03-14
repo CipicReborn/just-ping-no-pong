@@ -6336,8 +6336,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2126517012}
-        m_MethodName: CloseTipsAndProceed
+      - m_Target: {fileID: 2089825721}
+        m_MethodName: OnClickOnNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8133,11 +8133,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2089825719}
-  - component: {fileID: 2089825723}
+  - component: {fileID: 2089825721}
   - component: {fileID: 2089825722}
   - component: {fileID: 2089825720}
   m_Layer: 5
-  m_Name: Tips Canvas
+  m_Name: Tips Screen Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8183,6 +8183,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2089825721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089825718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131070e8d90cb8b4e9eea3e1260c65a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TipsBasic: {fileID: 1125823273}
+  NextButton: {fileID: 1619151476}
+  MinimumDisplayTime: 3
 --- !u!223 &2089825722
 Canvas:
   m_ObjectHideFlags: 0
@@ -8204,20 +8219,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2089825723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089825718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae525993bc2c1bf48acb8e4931ff3802, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NextButton: {fileID: 1619151476}
-  MinimumDisplayTime: 1.5
 --- !u!1 &2123252679
 GameObject:
   m_ObjectHideFlags: 0
@@ -8462,8 +8463,7 @@ MonoBehaviour:
   Camera: {fileID: 534669904}
   PauseModal: {fileID: 102201500}
   MenuModal: {fileID: 1385272515}
-  TipsCanvas: {fileID: 2089825718}
-  TipsBasic: {fileID: 1125823273}
+  TipsScreen: {fileID: 2089825721}
   MissionCanvas: {fileID: 2039350270}
 --- !u!1 &2132131778
 GameObject:

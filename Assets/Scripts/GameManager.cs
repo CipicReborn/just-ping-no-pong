@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using JustPingNoPong.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, IGameManager
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour, IGameManager
 #pragma warning restore CS0649
     #endregion
 
+
     #region UNITY INITIALISATION
 
     void Awake()
@@ -56,7 +58,6 @@ public class GameManager : MonoBehaviour, IGameManager
     }
 
     #endregion
-
 
 
     #region API
@@ -90,18 +91,18 @@ public class GameManager : MonoBehaviour, IGameManager
         Debug.Log("Game Resumed");
     }
 
-    public void ProcessResults()
-    {
-        UIManager.ShowResults(CurrentMission, score, score >= CurrentMission.ScoreTarget);
-        Debug.Log("Results Processed");
-    }
-
     public void TriggerGameOver()
     {
         UIManager.GameOver();
         Ball.Disable();
         gameIsOver = true;
         Debug.Log("Triggered Game Over");
+    }
+
+    public void ProcessResults()
+    {
+        UIManager.ShowResults(CurrentMission, score, score >= CurrentMission.ScoreTarget);
+        Debug.Log("Results Processed");
     }
 
     public void ResetGame()
@@ -171,6 +172,7 @@ public class GameManager : MonoBehaviour, IGameManager
     private int scoreForWalls = 0;
     private int scoreForRebounds = 1;
     private bool targetReached;
+
 
     private void ResetGameWorld()
     {
