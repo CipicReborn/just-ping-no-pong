@@ -52,11 +52,13 @@ public class GameManager : MonoBehaviour
         Pad.Init(this, padInput, PadData, gameWorldBoundaries, PadStartTransform);
         Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
         UIManager.Init(this);
-        mission = GameDesignData.Missions[0];
+        CurrentMission = GameDesignData.Missions[0];
         ShowTips();
     }
 
 
+
+    public Mission CurrentMission { get; private set; }
 
     public void AddScoreForRebound(Vector3 worldPosition)
     {
@@ -70,12 +72,6 @@ public class GameManager : MonoBehaviour
         Ball.Disable();
         gameIsOver = true;
         Debug.Log("Triggered Game Over");
-    }
-
-    public void ProcessResults()
-    {
-        UIManager.ShowResults(mission, score, score >= mission.ScoreTarget);
-        Debug.Log("Results Processed");
     }
 
     // API USED BY INPUT EVENTS
@@ -100,6 +96,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Resumed");
     }
 
+    public void ProcessResults()
+    {
+        UIManager.ShowResults(CurrentMission, score, score >= CurrentMission.ScoreTarget);
+        Debug.Log("Results Processed");
+    }
+
     public void ResetGame()
     {
         ResetGameWorld();
@@ -111,7 +113,7 @@ public class GameManager : MonoBehaviour
     public void CloseTips()
     {
         UIManager.HideTips();
-        UIManager.ShowMission(mission);
+        UIManager.ShowMission(CurrentMission);
     }
 
     public void Quit()
@@ -136,9 +138,9 @@ public class GameManager : MonoBehaviour
         }
 
         // GAME RULES
-        if (!targetReached && score >= mission.ScoreTarget)
+        if (!targetReached && score >= CurrentMission.ScoreTarget)
         {
-            Debug.Log("Success " + score + " of " + mission.ScoreTarget + "!");
+            Debug.Log("Success " + score + " of " + CurrentMission.ScoreTarget + "!");
             targetReached = true;
             UIManager.ShowTargetReachedFeedback();
         }
@@ -161,8 +163,6 @@ public class GameManager : MonoBehaviour
 
     private bool gameIsPaused;
     private bool gameIsOver = true;
-
-    private Mission mission;
     private int scoreForWalls = 0;
     private int scoreForRebounds = 1;
     private bool targetReached;
