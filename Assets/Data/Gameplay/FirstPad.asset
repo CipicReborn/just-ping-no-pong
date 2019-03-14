@@ -15,6 +15,6 @@ MonoBehaviour:
   LerpFactor: 0.2
   MaximumZRotation: 10
   ZRotationSpeed: 0.8
-  ReboundForce: 10
+  ReboundForce: 5
   PadLength: 0.75
   PadWidth: 0.5
