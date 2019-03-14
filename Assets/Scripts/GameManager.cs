@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IGameManager
 {
     #region INJECTION VIA UNITY INSPECTOR
 #pragma warning disable CS0649 // Disable warning "variable never initialized"
@@ -33,7 +32,7 @@ public class GameManager : MonoBehaviour
 #pragma warning restore CS0649
     #endregion
 
-    #region UNITY
+    #region UNITY INITIALISATION
 
     void Awake()
     {
@@ -56,7 +55,11 @@ public class GameManager : MonoBehaviour
         ShowTips();
     }
 
+    #endregion
 
+
+
+    #region API
 
     public Mission CurrentMission { get; private set; }
 
@@ -66,27 +69,18 @@ public class GameManager : MonoBehaviour
         UIManager.UpdateScoreGUI(scoreForRebounds, score, worldPosition);
     }
 
-    public void TriggerGameOver()
+    public void AddScoreForWalls(Vector3 worldPosition)
     {
-        UIManager.GameOver();
-        Ball.Disable();
-        gameIsOver = true;
-        Debug.Log("Triggered Game Over");
+        score += scoreForWalls;
+        UIManager.UpdateScoreGUI(scoreForWalls, score, worldPosition);
     }
 
-    // API USED BY INPUT EVENTS
     public void PauseGame()
     {
         if (gameIsOver) return;
         PauseGameplay();
         UIManager.ShowPause();
         Debug.Log("Game Paused");
-    }
-
-    public void ShowRestartMenu()
-    {
-        UIManager.ShowMenu();
-        Debug.LogWarning("Restart Menu WIP");
     }
 
     public void ResumeGame()
@@ -102,12 +96,30 @@ public class GameManager : MonoBehaviour
         Debug.Log("Results Processed");
     }
 
+    public void TriggerGameOver()
+    {
+        UIManager.GameOver();
+        Ball.Disable();
+        gameIsOver = true;
+        Debug.Log("Triggered Game Over");
+    }
+
     public void ResetGame()
     {
         ResetGameWorld();
         UIManager.Reset();
         ResumeGameplay();
         Debug.Log("Game Started");
+    }
+    
+    #endregion
+
+
+
+    public void ShowRestartMenu()
+    {
+        UIManager.ShowMenu();
+        Debug.LogWarning("Restart Menu WIP");
     }
 
     public void CloseTips()
@@ -120,6 +132,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
+
 
     // GAME LOGIC, IMPLEM
     private void Update()
@@ -152,9 +166,6 @@ public class GameManager : MonoBehaviour
             UIManager.UpdatePadGUI(Pad.GetNormalisedXPosition());
         }
     }
-
-    #endregion
-
 
 
     private GameWorldBoundaries gameWorldBoundaries;
