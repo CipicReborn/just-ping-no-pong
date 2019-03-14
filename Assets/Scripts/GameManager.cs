@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour, IGameManager
         Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
         UIManager.Init(this);
         CurrentMission = GameDesignData.Missions[0];
-        ShowTips();
     }
 
     #endregion
@@ -81,14 +80,12 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         if (gameIsOver) return;
         PauseGameplay();
-        UIManager.ShowPause();
         Debug.Log("Game Paused");
     }
 
     public void ResumeGame()
     {
         ResumeGameplay();
-        UIManager.ClosePopups();
         Debug.Log("Game Resumed");
     }
 
@@ -109,7 +106,6 @@ public class GameManager : MonoBehaviour, IGameManager
     public void ResetGame()
     {
         ResetGameWorld();
-        UIManager.Reset();
         ResumeGameplay();
         Debug.Log("Game Started");
     }
@@ -181,11 +177,6 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         gameIsPaused = false;
         Ball.EnablePhysics();
-    }
-
-    private void ShowTips()
-    {
-        UIManager.ShowTips();
     }
 
     #endregion

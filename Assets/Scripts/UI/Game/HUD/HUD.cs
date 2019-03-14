@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JustPingNoPong.UI
 {
-    public class HUD : MonoBehaviour
+    public class HUD : UIElement
     {
         
         #region INJECTION VIA UNITY INSPECTOR
@@ -30,7 +30,9 @@ namespace JustPingNoPong.UI
         private TextMeshProUGUI scoreText;
         private IGameManager gameManager;
 
-        void Start()
+        #region UNITY INITIALISATION
+
+        void Awake()
         {
             SuccessFeedback.gameObject.SetActive(true);
             GameOverFeedback.gameObject.SetActive(true);
@@ -38,9 +40,24 @@ namespace JustPingNoPong.UI
             scoreText = ScoreFeedback.GetComponentInChildren<TextMeshProUGUI>();
         }
 
+        #endregion
+
+
+        #region API
+
         public void Init(IGameManager gm)
         {
             gameManager = gm;
+        }
+
+        public override void Show()
+        {
+            SetActive(true);
+        }
+
+        public override void Hide()
+        {
+            SetActive(false);
         }
 
         public void Reset()
@@ -80,5 +97,9 @@ namespace JustPingNoPong.UI
         {
             gameManager.ProcessResults();
         }
+
+
+
+        #endregion
     }
 }

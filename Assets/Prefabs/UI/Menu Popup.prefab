@@ -137,8 +137,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Quit
+      - m_Target: {fileID: 947248428166186583}
+        m_MethodName: OnClickOnQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3088603236660401168}
   - component: {fileID: 3088603236660401169}
+  - component: {fileID: 947248428166186583}
   - component: {fileID: 3088603236660401170}
   - component: {fileID: 3088603236660401171}
   m_Layer: 5
@@ -199,6 +200,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3088603236660401172}
   m_CullTransparentMesh: 0
+--- !u!114 &947248428166186583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088603236660401172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad584af44315b5941a3b21ddb3bf67db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3088603236660401170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,8 +721,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ResetGame
+      - m_Target: {fileID: 947248428166186583}
+        m_MethodName: OnClickOnRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

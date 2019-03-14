@@ -24,8 +24,14 @@ namespace JustPingNoPong.UI
         public override void Show()
         {
             TipsBasic.SetActive(true);
-            gameObject.SetActive(true);
+            SetActive(true);
         }
+
+        public override void Hide()
+        {
+            SetActive(false);
+        }
+
 
         public void OnEnable()
         {

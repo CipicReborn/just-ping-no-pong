@@ -1,7 +1,7 @@
 ﻿
 namespace JustPingNoPong.UI
 {
-    public abstract class Screen : UIElement
+    public abstract class Window : UIElement
     {
 
     }

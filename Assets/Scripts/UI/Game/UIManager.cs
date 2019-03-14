@@ -5,6 +5,7 @@ namespace JustPingNoPong.UI
 {
     public class UIManager : MonoBehaviour
     {
+        
         #region INJECTION VIA UNITY INSPECTOR
 #pragma warning disable CS0649
 
@@ -15,42 +16,90 @@ namespace JustPingNoPong.UI
         [Header("Screens")]
         [SerializeField]
         private TipsScreen TipsScreen;
+
         [Header("Windows")]
         [SerializeField]
-        private MissionsUIController MissionCanvas;
+        private MissionWindow MissionWindow;
         [SerializeField]
-        private GameObject PauseModal;
+        private ResultsWindow ResultsWindow;
         [SerializeField]
-        private GameObject MenuModal;
+        private Pause PausePopup;
+        [SerializeField]
+        private Menu MenuPopup;
 
 #pragma warning restore CS0649
         #endregion
 
-        
-        private IGameManager gameManager;
+
+        #region UNITY INITIALISATION
 
         private void Awake()
         {
-
-            Reset();
         }
+
+        private void Start()
+        {
+            //ResetGame();
+            HUD.Hide();
+            CloseWindows();
+            TipsScreen.Show();
+        }
+
+        #endregion 
+
+
+        #region API
 
         public void Init(GameManager gm)
         {
             gameManager = gm;
             HUD.Init(gm);
-            MissionCanvas.Init(gm, this);
-            TipsScreen.UIManager = this;
+            MissionWindow.Init(gm, this);
+            TipsScreen.Init(this);
+            PausePopup.Init(this);
+            MenuPopup.Init(this);
+            MissionWindow.Init(this);
+            ResultsWindow.Init(this);
         }
 
-        public void ShowPause()
+        public void CloseTipsAndProceed()
         {
-            PauseModal.SetActive(true);
+            HUD.Show();
+            MissionWindow.ShowMission(gameManager.CurrentMission);
         }
 
-        private void HidePause()
+        public void OnClickOnPause()
         {
-            PauseModal.SetActive(false);
+            PausePopup.Show();
+            gameManager.PauseGame();
+        }
+
+        public void ResumeGame()
+        {
+            CloseWindows();
+
+            gameManager.ResumeGame();
+        }
+
+        public void ShowResults(Mission mission, int score, bool success)
+        {
+            ResultsWindow.ShowResults(mission, score, success);
+        }
+
+        public void ShowMenu()
+        {
+            MenuPopup.Show();
+        }
+
+        public void ResetGame()
+        {
+            HUD.Reset();
+            CloseWindows();
+            MissionWindow.Hide();
+            ResultsWindow.Hide();
+            TipsScreen.Hide();
+
+            gameManager.ResetGame();
         }
 
         public void Quit()
@@ -58,60 +107,22 @@ namespace JustPingNoPong.UI
             SceneManager.LoadScene("Menu");
         }
 
-        public void ShowMenu()
+        #endregion
+
+
+        #region IMPLEMENTATION
+
+        private IGameManager gameManager;
+
+
+        private void CloseWindows()
         {
-            MenuModal.SetActive(true);
-            Debug.LogWarning("Restart Menu WIP");
+            PausePopup.Hide();
+            MenuPopup.Hide();
+            MissionWindow.Hide();
+            ResultsWindow.Hide();
         }
 
-        private void HideMenu()
-        {
-            MenuModal.SetActive(false);
-        }
-
-        public void ClosePopups()
-        {
-            PauseModal.SetActive(false);
-            MenuModal.SetActive(false);
-        }
-
-        public void ShowTips()
-        {
-            TipsScreen.Show();
-        }
-
-        public void CloseTipsAndProceed()
-        {
-            ShowMission();
-        }
-
-        public void ShowMission()
-        {
-            MissionCanvas.ShowMission(gameManager.CurrentMission);
-        }
-
-        public void HideMission()
-        {
-            MissionCanvas.ClosePanels();
-        }
-
-        public void ShowResults(Mission mission, int score, bool success)
-        {
-            MissionCanvas.ShowResults(mission, score, success);
-        }
-
-        public void HideResults()
-        {
-            MissionCanvas.ClosePanels();
-        }
-
-        public void Reset()
-        {
-            HUD.Reset();
-            ClosePopups();
-            HideMission();
-            HideResults();
-            TipsScreen.Hide();
-        }
+        #endregion
     }
 }
