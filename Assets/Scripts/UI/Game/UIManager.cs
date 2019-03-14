@@ -39,7 +39,6 @@ namespace JustPingNoPong.UI
 
         private void Start()
         {
-            //ResetGame();
             HUD.Hide();
             CloseWindows();
             TipsScreen.Show();
