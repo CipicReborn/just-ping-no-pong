@@ -15,7 +15,7 @@ namespace JustPingNoPong.UI
         [SerializeField]
         private Button NextButton;
         [SerializeField]
-        private float MinimumDisplayTime;
+        private float ButtonsEnablingDelay;
 
 #pragma warning restore IDE0044
 #pragma warning restore CS0649
@@ -30,7 +30,7 @@ namespace JustPingNoPong.UI
         public void OnEnable()
         {
             NextButton.interactable = false;
-            Invoke("EnableNext", MinimumDisplayTime);
+            Invoke("EnableNext", ButtonsEnablingDelay);
         }
 
         public void EnableNext()
