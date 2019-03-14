@@ -35,13 +35,9 @@ public class GameManager : MonoBehaviour
 
     #region UNITY
 
-    private GUIStyle debugGUIStyle = new GUIStyle();
     void Awake()
     {
         Application.targetFrameRate = 60;
-        debugGUIStyle.normal.textColor = Color.black;
-        debugGUIStyle.fontSize = 50;
-        debugGUIStyle.padding = new RectOffset(20, 0, 20, 0);
 
 #if UNITY_EDITOR
         padInput = new MousePadLateralInput();
@@ -60,17 +56,7 @@ public class GameManager : MonoBehaviour
         ShowTips();
     }
 
-    private void OnGUI()
-    {
 
-        GUILayout.Label((1.0 / Time.deltaTime).ToString("0.0"), debugGUIStyle);
-    }
-    // API USED BY PHYSICS COMPONENTS
-    public void AddScoreForWalls(Vector3 worldPosition)
-    {
-        score += scoreForWalls;
-        UIManager.UpdateScoreGUI(scoreForWalls, score, worldPosition);
-    }
 
     public void AddScoreForRebound(Vector3 worldPosition)
     {
