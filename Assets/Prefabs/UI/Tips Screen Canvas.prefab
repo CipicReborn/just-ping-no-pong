@@ -92,7 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TipsBasic: {fileID: 1351882322165995152}
   NextButton: {fileID: 1351882321603424205}
-  ButtonsEnablingDelay: 3
+  ButtonsEnablingDelay: 2
+  MaxDisplayDelay: 5
 --- !u!223 &1351882321403252739
 Canvas:
   m_ObjectHideFlags: 0
