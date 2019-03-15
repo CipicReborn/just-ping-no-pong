@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     #region API
 
+    public bool GameIsOver { get; private set; } = true;
     public Mission CurrentMission { get; private set; }
 
     public void AddScoreForRebound(Vector3 worldPosition)
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void PauseGame()
     {
-        if (gameIsOver) return;
+        if (GameIsOver) return;
         PauseGameplay();
         Debug.Log("Game Paused");
     }
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         HUD.GameOver();
         Ball.Disable();
-        gameIsOver = true;
+        GameIsOver = true;
         Debug.Log("Triggered Game Over");
     }
 
@@ -125,7 +126,7 @@ public class GameManager : MonoBehaviour, IGameManager
         // GAME OBJECTS
         Pad.Tick(Time.deltaTime); // let the player manipulate the pad even after game over
 
-        if (!gameIsOver)
+        if (!GameIsOver)
         {
             Ball.Tick(Time.deltaTime);
         }
@@ -152,7 +153,6 @@ public class GameManager : MonoBehaviour, IGameManager
     private int score;
 
     private bool gameIsPaused;
-    private bool gameIsOver = true;
     private int scoreForWalls = 0;
     private int scoreForRebounds = 1;
     private bool targetReached;
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         score = 0;
         targetReached = false;
-        gameIsOver = false;
+        GameIsOver = false;
         Pad.Reset();
         Ball.Reset();
     }

@@ -69,6 +69,7 @@ namespace JustPingNoPong.UI
 
         public void OnClickOnPause()
         {
+            if (gameManager.GameIsOver) return;
             PausePopup.Show();
             gameManager.PauseGame();
         }
