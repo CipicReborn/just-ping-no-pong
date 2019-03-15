@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour, IGameManager
     {
         ResetGameWorld();
         ResumeGameplay();
+        Ball.RandomisePosition();
         Debug.Log("Game Started");
     }
 
