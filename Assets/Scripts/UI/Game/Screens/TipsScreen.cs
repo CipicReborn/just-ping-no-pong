@@ -16,6 +16,8 @@ namespace JustPingNoPong.UI
         private Button NextButton;
         [SerializeField]
         private float ButtonsEnablingDelay;
+        [SerializeField]
+        private float MaxDisplayDelay;
 
 #pragma warning restore IDE0044
 #pragma warning restore CS0649
@@ -25,6 +27,7 @@ namespace JustPingNoPong.UI
         {
             TipsBasic.SetActive(true);
             SetActive(true);
+            Invoke("OnClickOnNext", MaxDisplayDelay);
         }
 
         public override void Hide()
@@ -46,7 +49,7 @@ namespace JustPingNoPong.UI
 
         public void OnClickOnNext()
         {
-            gameObject.SetActive(false);
+            Hide();
             UIManager.CloseTipsAndProceed();
         }
 
