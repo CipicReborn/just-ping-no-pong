@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a37e5a447b8d36409840f978438c603, type: 3}
   m_Name: BallPro
   m_EditorClassIdentifier: 
-  Mass: 0.1
-  Radius: 0.3
+  Mass: 0.025
+  Radius: 0.5
