@@ -121,9 +121,9 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void ResetGame()
     {
+        //RandomiseBallStartPosition();
         ResetGameWorld();
         ResumeGameplay();
-        Ball.RandomisePosition();
         Debug.Log("Game Started");
     }
 
@@ -195,5 +195,11 @@ public class GameManager : MonoBehaviour, IGameManager
         Ball.EnablePhysics();
     }
 
+    private void RandomiseBallStartPosition()
+    {
+        var pos = BallStartTransform.position;
+        pos.x = Random.Range(0f, 1f) > 0.5f ? +1 : -1;
+        BallStartTransform.position = pos;
+    }
     #endregion
 }
