@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void Equip()
     {
-        Pad.Init(this, padInput, gameWorldBoundaries, PadStartTransform);
-        Ball.Init(this, gameWorldBoundaries, BallStartTransform);
+        EquipPad(Pad);
+        EquipBall(Ball);
     }
 
     public void SelectMission()
@@ -123,6 +123,18 @@ public class GameManager : MonoBehaviour, IGameManager
         ResetGameWorld();
         ResumeGameplay();
         Debug.Log("Game Started");
+    }
+
+    public void EquipPad(Pad pad)
+    {
+        Pad = pad;
+        Pad.Init(this, padInput, gameWorldBoundaries, PadStartTransform);
+    }
+
+    public void EquipBall(Ball ball)
+    {
+        Ball = ball;
+        Ball.Init(this, gameWorldBoundaries, BallStartTransform);
     }
 
     #endregion

@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace JustPingNoPong.UI
 {
     public class UIManager : MonoBehaviour
     {
-        
+
         #region INJECTION VIA UNITY INSPECTOR
 #pragma warning disable CS0649
+        [SerializeField]
+        private Camera Camera;
 
         [Header("In Game UI")]
         [SerializeField]
@@ -26,15 +29,20 @@ namespace JustPingNoPong.UI
         private Pause PausePopup;
         [SerializeField]
         private Menu MenuPopup;
-
+        [SerializeField]
+        private PadSelectionWindow PadSelection;
+        [Header("Pads")]
+        public List<Pad> Pads;
+        public List<PadInfo> Infos;
 #pragma warning restore CS0649
         #endregion
-
+        private Animator cameraman;
 
         #region UNITY INITIALISATION
 
         private void Awake()
         {
+            cameraman = Camera.GetComponent<Animator>();
         }
 
         private void Start()
@@ -59,10 +67,43 @@ namespace JustPingNoPong.UI
             MenuPopup.Init(this);
             MissionWindow.Init(this);
             ResultsWindow.Init(this);
+            PadSelection.Init(this);
         }
 
         public void CloseTipsAndProceed()
         {
+            cameraman.SetTrigger("CameraPad");
+            PadSelection.Show();
+        }
+
+        int padIndex = 0;
+
+        public int GetNextPadId()
+        {
+            return ++padIndex;
+        }
+
+        public int GetPrevPadId()
+        {
+            return --padIndex;
+        }
+        public PadInfo GetPadInfo(int i)
+        {
+            return Infos[i];
+        }
+        public void FocusPad(int index)
+        {
+            padIndex = index;
+            for (int i = 0; i < Pads.Count; i++)
+            {
+                Pads[i].gameObject.SetActive(padIndex == i);
+            }
+        }
+        public void EquipPad(int i)
+        {
+            gameManager.EquipPad(Pads[i]);
+            PadSelection.Hide();
+            cameraman.SetTrigger("CameraMain");
             HUD.Show();
             MissionWindow.ShowMission(gameManager.CurrentMission);
         }
@@ -95,8 +136,6 @@ namespace JustPingNoPong.UI
         {
             HUD.Reset();
             CloseWindows();
-            MissionWindow.Hide();
-            ResultsWindow.Hide();
             TipsScreen.Hide();
 
             gameManager.ResetGame();
@@ -121,6 +160,7 @@ namespace JustPingNoPong.UI
             MenuPopup.Hide();
             MissionWindow.Hide();
             ResultsWindow.Hide();
+            PadSelection.Hide();
         }
 
         #endregion

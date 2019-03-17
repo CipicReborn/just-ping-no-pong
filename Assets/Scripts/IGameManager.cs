@@ -12,4 +12,7 @@ public interface IGameManager
     void ProcessResults();
     void TriggerGameOver();
     void ResetGame();
+
+    void EquipPad(Pad pad);
+    void EquipBall(Ball ball);
 }

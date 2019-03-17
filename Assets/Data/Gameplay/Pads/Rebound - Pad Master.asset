@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c9066b473952b48842e527dd757004, type: 3}
   m_Name: Rebound - Pad Master
   m_EditorClassIdentifier: 
-  ReboundForce: 6.8
+  ReboundForce: 4.2
