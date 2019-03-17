@@ -13,9 +13,9 @@ public class ReboundForce : MonoBehaviour
 
     public void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.name == "Ball")
+        if (col.gameObject.CompareTag("Ball"))
         {
-            col.rigidbody.AddForce(Vector3.up * data.ReboundForce);
+            col.rigidbody.AddForce(transform.up * data.ReboundForce);
             gameManager.AddScoreForRebound(transform.position);
         }
     }

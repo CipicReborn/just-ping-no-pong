@@ -530,6 +530,91 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &173175092
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1300903671}
+    m_Modifications:
+    - target: {fileID: 3625886394539099312, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_Name
+      value: Ball Pro
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099312, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099312, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0dcc8b9608585124ea41645880ad896d, type: 3}
+--- !u!4 &173175093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3625886394539099327, guid: 0dcc8b9608585124ea41645880ad896d,
+    type: 3}
+  m_PrefabInstance: {fileID: 173175092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &366649277
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,7 +1014,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 1300903671}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &549839238
 GameObject:
@@ -1066,7 +1151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerData: {fileID: 11400000, guid: 67606b815dc5fac4b8816731d67406a7, type: 2}
   GameDesignData: {fileID: 11400000, guid: 89c46ba83451d524db1743389f716d66, type: 2}
-  Pad: {fileID: 17878657}
+  Pad: {fileID: 2071339981}
   Ball: {fileID: 915107262}
   PadStartTransform: {fileID: 115861203}
   BallStartTransform: {fileID: 559530114}
@@ -1832,6 +1917,7 @@ Transform:
   - {fileID: 559530114}
   - {fileID: 115861203}
   - {fileID: 915107258}
+  - {fileID: 173175093}
   - {fileID: 1751662503}
   - {fileID: 2123252680}
   - {fileID: 5353634146290331853}
@@ -1977,12 +2063,17 @@ PrefabInstance:
     - target: {fileID: 3625886394539099312, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
       propertyPath: m_Name
-      value: BallMaster
+      value: Ball Master
       objectReference: {fileID: 0}
     - target: {fileID: 3625886394539099312, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099312, guid: f4ab7c425893429488e4118c0238369c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 3625886394539099327, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
@@ -2022,7 +2113,7 @@ PrefabInstance:
     - target: {fileID: 3625886394539099327, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3625886394539099327, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
@@ -3174,6 +3265,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad584af44315b5941a3b21ddb3bf67db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2071339981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 925301886822196164, guid: 7d2d74eaa3c58614d9c4a3a5da4344cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 925301885656064013}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691eacaa424e57c4a8e28db7f53320ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2089825719 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1351882321403252750, guid: 3fe20e2de1b989b46b48e3f2c55f49a8,
@@ -3449,7 +3552,7 @@ PrefabInstance:
     - target: {fileID: 5641196124090412993, guid: 3a65a81b685bbed41832cb3e2fc41f6f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5641196124090412993, guid: 3a65a81b685bbed41832cb3e2fc41f6f,
         type: 3}
@@ -3667,7 +3770,7 @@ PrefabInstance:
     - target: {fileID: 925301886822196170, guid: 7d2d74eaa3c58614d9c4a3a5da4344cc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 925301886822196165, guid: 7d2d74eaa3c58614d9c4a3a5da4344cc,
         type: 3}
@@ -3707,7 +3810,7 @@ PrefabInstance:
     - target: {fileID: 925301886822196165, guid: 7d2d74eaa3c58614d9c4a3a5da4344cc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 925301886822196165, guid: 7d2d74eaa3c58614d9c4a3a5da4344cc,
         type: 3}
@@ -4098,6 +4201,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pad Master
       objectReference: {fileID: 0}
+    - target: {fileID: 7383687573456052067, guid: 499ab5ee97851884aac8fcbce061cbd0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7383687573456052076, guid: 499ab5ee97851884aac8fcbce061cbd0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4136,7 +4244,7 @@ PrefabInstance:
     - target: {fileID: 7383687573456052076, guid: 499ab5ee97851884aac8fcbce061cbd0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7383687573456052076, guid: 499ab5ee97851884aac8fcbce061cbd0,
         type: 3}
@@ -4399,6 +4507,11 @@ PrefabInstance:
     - target: {fileID: 3625886394539099312, guid: b669fc97ca2186c44805473585dd6a7e,
         type: 3}
       propertyPath: m_Name
+      value: Ball Amateur
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099312, guid: b669fc97ca2186c44805473585dd6a7e,
+        type: 3}
+      propertyPath: m_TagString
       value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 3625886394539099327, guid: b669fc97ca2186c44805473585dd6a7e,
