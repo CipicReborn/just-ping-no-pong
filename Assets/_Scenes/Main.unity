@@ -4091,25 +4091,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1351882321403252750, guid: 3fe20e2de1b989b46b48e3f2c55f49a8,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351882321403252750, guid: 3fe20e2de1b989b46b48e3f2c55f49a8,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1351882321403252750, guid: 3fe20e2de1b989b46b48e3f2c55f49a8,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1351882321403252739, guid: 3fe20e2de1b989b46b48e3f2c55f49a8,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1351882322479546970, guid: 3fe20e2de1b989b46b48e3f2c55f49a8,
         type: 3}

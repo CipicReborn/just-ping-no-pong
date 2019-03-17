@@ -23,16 +23,20 @@ namespace JustPingNoPong.UI
 #pragma warning restore CS0649
         #endregion
 
+        private bool hidden;
+
         public override void Show()
         {
             TipsBasic.SetActive(true);
             SetActive(true);
+            hidden = false;
             Invoke("OnClickOnNext", MaxDisplayDelay);
         }
 
         public override void Hide()
         {
             SetActive(false);
+            hidden = true;
         }
 
 
@@ -49,6 +53,7 @@ namespace JustPingNoPong.UI
 
         public void OnClickOnNext()
         {
+            if (hidden) return;
             Hide();
             UIManager.CloseTipsAndProceed();
         }
