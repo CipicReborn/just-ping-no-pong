@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 92b4293b50e459c408d82a4d365797c1, type: 2}
-  LerpK: 0
+  LerpK: 0.4
   threshold: 0.1
 --- !u!1 &925301887310255816
 GameObject:
