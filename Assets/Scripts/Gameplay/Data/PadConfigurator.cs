@@ -12,7 +12,7 @@ public class PadConfigurator : MonoBehaviour
     }
 
     [SerializeField]
-    private PadMover Pad;
+    private Pad Pad;
     [Header("Gauge Bounds")]
     [SerializeField]
     private SingleMinMax Gauge1Bounds;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MousePadLateralInput : IPadInput
+public class MouseInput : IPadInput
 {
     public bool InputPressed { get; private set; }
 

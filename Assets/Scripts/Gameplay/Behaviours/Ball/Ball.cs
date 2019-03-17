@@ -37,9 +37,9 @@ public class Ball : MonoBehaviour
 
     public void RandomisePosition()
     {
-        var pos = transform.position;
-        pos.x += Random.Range(0f, 1f) > 0.5f ? +1 : -1;
-        transform.position = pos;
+        //var pos = transform.position;
+        //pos.x += Random.Range(0f, 1f) > 0.5f ? +1 : -1;
+        //transform.position = pos;
     }
 
     public void EnablePhysics()

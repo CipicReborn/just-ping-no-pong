@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TouchPadLateralInput : IPadInput
+public class TouchInput : IPadInput
 {
     public bool InputPressed { get; private set; }
 
+    /// <summary>
+    /// The x coordinate of the touch in world position
+    /// </summary>
     public float Position { get { return GetPosition(); } }
+    /// <summary>
+    /// The amount of z rotation confered to the pad
+    /// </summary>
     public float Rotation { get { return GetRotation(); } }
+
 
     public void Refresh()
     {
@@ -29,6 +36,15 @@ public class TouchPadLateralInput : IPadInput
         }
     }
 
+
+
+    private Vector2 touchPosition;
+    private Vector2 originTouchPosition;
+    private bool prevPressed;
+    private bool isOverGUI;
+    private bool wasOverGUI;
+    private int collisionLayer = LayerMask.GetMask("GameInput");
+
     private bool JustLeftGUI()
     {
         return wasOverGUI && Input.GetTouch(0).phase == TouchPhase.Ended;
@@ -37,18 +53,14 @@ public class TouchPadLateralInput : IPadInput
     private float GetPosition()
     {
         var ray = Camera.main.ScreenPointToRay(touchPosition);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 20f))
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 20f, collisionLayer))
         {
             return hitInfo.point.x;
         }
         return 0;
     }
 
-    private Vector2 touchPosition;
-    private Vector2 originTouchPosition;
-    private bool prevPressed;
-    private bool isOverGUI;
-    private bool wasOverGUI;
 
     private float GetRotation()
     {
@@ -56,7 +68,7 @@ public class TouchPadLateralInput : IPadInput
         {
             originTouchPosition = touchPosition;
         }
-        var deltaPos = touchPosition.y - originTouchPosition.y;
-        return deltaPos/10.0f;
+
+        return (touchPosition.y - originTouchPosition.y) / 10.0f;
     }
 }

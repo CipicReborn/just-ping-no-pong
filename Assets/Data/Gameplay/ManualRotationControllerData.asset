@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c9066b473952b48842e527dd757004, type: 3}
-  m_Name: FirstPad
+  m_Script: {fileID: 11500000, guid: 0594317ba959dd843bdda245cdf04176, type: 3}
+  m_Name: ManualRotationControllerData
   m_EditorClassIdentifier: 
-  ReboundForce: 7.3
+  MaximumZRotation: 10
+  ZRotationSpeed: 0.8

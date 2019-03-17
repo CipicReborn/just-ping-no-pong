@@ -12,9 +12,7 @@ public class GameManager : MonoBehaviour, IGameManager
     [SerializeField]
     private GameDesignData GameDesignData;
     [SerializeField]
-    private PadMover Pad;
-    [SerializeField]
-    private PadData PadData;
+    private Pad Pad;
     [SerializeField]
     private Ball Ball;
     [SerializeField]
@@ -42,18 +40,28 @@ public class GameManager : MonoBehaviour, IGameManager
         Application.targetFrameRate = 60;
 
 #if UNITY_EDITOR
-        padInput = new MousePadLateralInput();
+        padInput = new MouseInput();
 #else
-        padInput = new TouchPadLateralInput();
+        padInput = new TouchInput();
 #endif
         gameWorldBoundaries = new GameWorldBoundaries(Camera);
     }
 
     void Start()
     {
-        Pad.Init(this, padInput, PadData, gameWorldBoundaries, PadStartTransform);
-        Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
+        Equip();
+        SelectMission();
         UIManager.Init(this);
+    }
+
+    public void Equip()
+    {
+        Pad.Init(this, padInput, gameWorldBoundaries, PadStartTransform);
+        Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
+    }
+
+    public void SelectMission()
+    {
         CurrentMission = GameDesignData.Missions[0];
     }
 
