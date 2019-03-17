@@ -12,9 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c9066b473952b48842e527dd757004, type: 3}
   m_Name: NormalPad
   m_EditorClassIdentifier: 
-  LerpFactor: 0.4
-  MaximumZRotation: 25
-  ZRotationSpeed: 2
-  ReboundForce: 20
-  PadLength: 0.75
-  PadWidth: 0.5
+  ReboundForce: 7.3

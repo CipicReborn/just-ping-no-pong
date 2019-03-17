@@ -14,6 +14,7 @@ public class TouchInput : IPadInput
     /// </summary>
     public float Rotation { get { return GetRotation(); } }
 
+    public float RawVerticalDelta { get { return touchPosition.y - originTouchPosition.y; } }
 
     public void Refresh()
     {
@@ -34,9 +35,12 @@ public class TouchInput : IPadInput
             isOverGUI = false;
             InputPressed = false;
         }
+
+        if (InputPressed && !prevPressed)
+        {
+            originTouchPosition = touchPosition;
+        }
     }
-
-
 
     private Vector2 touchPosition;
     private Vector2 originTouchPosition;
@@ -61,14 +65,8 @@ public class TouchInput : IPadInput
         return 0;
     }
 
-
     private float GetRotation()
     {
-        if (InputPressed && !prevPressed)
-        {
-            originTouchPosition = touchPosition;
-        }
-
-        return (touchPosition.y - originTouchPosition.y) / 10.0f;
+        return touchPosition.y - originTouchPosition.y;
     }
 }

@@ -73,6 +73,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e3d71595052a641a512890da413c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 6293f4800c930754294c2a3484282dbb, type: 2}
+  ControlDepth: 80
+  MaxAngle: 20
+  Limit: 0.12
+  spinningSpeed: 3240
 --- !u!1 &7383687573811047009
 GameObject:
   m_ObjectHideFlags: 0

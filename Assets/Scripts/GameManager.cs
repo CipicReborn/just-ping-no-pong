@@ -85,6 +85,13 @@ public class GameManager : MonoBehaviour, IGameManager
         HUD.UpdateScoreGUI(scoreForWalls, score, worldPosition);
     }
 
+    public void AddScoreForSpinning()
+    {
+        var scoreForSpinning = 2;
+        score += scoreForSpinning;
+        HUD.UpdateScoreGUI(scoreForSpinning, score, Pad.transform.position);
+    }
+
     public void PauseGame()
     {
         if (GameIsOver) return;

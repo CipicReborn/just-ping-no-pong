@@ -7,12 +7,18 @@ public class MouseInput : IPadInput
 
     public float Position { get { return GetPosition(); } }
     public float Rotation { get { return GetRotation(); } }
+    public float RawVerticalDelta { get { return mousePosition.y - originMousePosition.y; } }
 
     public void Refresh()
     {
         prevPressed = InputPressed;
         InputPressed = Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject();
         mousePosition = Input.mousePosition;
+        if (InputPressed && !prevPressed)
+        {
+            originMousePosition = mousePosition;
+            Debug.Log("Origin reset");
+        }
     }
 
     private float GetPosition()
@@ -31,11 +37,6 @@ public class MouseInput : IPadInput
 
     private float GetRotation()
     {
-        if (InputPressed && !prevPressed)
-        {
-            originMousePosition = mousePosition;
-        }
-        var deltaPos = mousePosition.y - originMousePosition.y;
-        return deltaPos;
+        return mousePosition.y - originMousePosition.y;
     }
 }

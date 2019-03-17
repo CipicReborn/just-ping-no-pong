@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0594317ba959dd843bdda245cdf04176, type: 3}
   m_Name: ManualRotationControllerData
   m_EditorClassIdentifier: 
-  MaximumZRotation: 10
-  ZRotationSpeed: 0.8
+  MaximumZRotation: 20
+  ZRotationSpeed: 1
