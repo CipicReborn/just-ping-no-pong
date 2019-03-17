@@ -1068,7 +1068,6 @@ MonoBehaviour:
   GameDesignData: {fileID: 11400000, guid: 89c46ba83451d524db1743389f716d66, type: 2}
   Pad: {fileID: 17878657}
   Ball: {fileID: 915107262}
-  BallData: {fileID: 11400000, guid: 5805165edaad8fa4f98d04ea88c4275e, type: 2}
   PadStartTransform: {fileID: 115861203}
   BallStartTransform: {fileID: 559530114}
   Camera: {fileID: 534669904}

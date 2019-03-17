@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour, IGameManager
     [SerializeField]
     private Ball Ball;
     [SerializeField]
-    private BallData BallData;
-    [SerializeField]
     private Transform PadStartTransform;
     [SerializeField]
     private Transform BallStartTransform;
@@ -57,7 +55,7 @@ public class GameManager : MonoBehaviour, IGameManager
     public void Equip()
     {
         Pad.Init(this, padInput, gameWorldBoundaries, PadStartTransform);
-        Ball.Init(this, BallData, gameWorldBoundaries, BallStartTransform);
+        Ball.Init(this, gameWorldBoundaries, BallStartTransform);
     }
 
     public void SelectMission()

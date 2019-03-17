@@ -5,18 +5,18 @@ public class Ball : MonoBehaviour
     private WallsRebound reboundBehaviour;
     private Rigidbody rb;
     private Transform startTransform;
-    private BallData data;
+    [SerializeField]
+    private BallData Data;
 
     private Vector3 velocityBeforePause;
     private Vector3 angularVelocityBeforePause;
 
-    public void Init(GameManager gm, BallData data, GameWorldBoundaries gameWorldBoundaries, Transform startTransform)
+    public void Init(GameManager gm, GameWorldBoundaries gameWorldBoundaries, Transform startTransform)
     {
         this.startTransform = startTransform;
-        this.data = data;
         rb = GetComponent<Rigidbody>();
-        rb.mass = data.Mass;
-        transform.localScale = new Vector3(data.Radius, data.Radius, data.Radius);
+        rb.mass = Data.Mass;
+        transform.localScale = new Vector3(Data.Radius, Data.Radius, Data.Radius);
         reboundBehaviour = GetComponent<WallsRebound>();
         reboundBehaviour.Init(gm, gameWorldBoundaries.ScreenRightLimit);
         DisablePhysics();
@@ -24,8 +24,9 @@ public class Ball : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
-#if UNITY_EDITOR
-        rb.mass = data.Mass; // for tuning
+#if UNITY_EDITOR // for tuning
+        rb.mass = Data.Mass;
+        transform.localScale = new Vector3(Data.Radius, Data.Radius, Data.Radius);
 #endif
         reboundBehaviour.Tick();
     }
