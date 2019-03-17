@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6010536394227622925}
   - component: {fileID: 7858641261553873286}
   m_Layer: 0
-  m_Name: Pro Pad
+  m_Name: PadMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691eacaa424e57c4a8e28db7f53320ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 6756b2c236fed584e9c9d310662165cb, type: 2}
+  Data: {fileID: 11400000, guid: 04dfb35c1d3097347b5b077dc6245291, type: 2}
 --- !u!114 &6010536394227622925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,14 +70,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7383687573456052067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12e3d71595052a641a512890da413c51, type: 3}
+  m_Script: {fileID: 11500000, guid: 58cf68447cad2c143a71721ad1202a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 6293f4800c930754294c2a3484282dbb, type: 2}
-  ControlDepth: 80
-  MaxAngle: 20
-  Limit: 0.12
-  spinningSpeed: 3240
+  data: {fileID: 11400000, guid: b1aaf9072b23ac8408967ab32d6041c2, type: 2}
+  gm: {fileID: 0}
 --- !u!1 &7383687573811047009
 GameObject:
   m_ObjectHideFlags: 0

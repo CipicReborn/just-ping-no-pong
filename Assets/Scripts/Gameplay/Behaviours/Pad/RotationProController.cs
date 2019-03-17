@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class ManualRotationController : RotationController
+public class RotationProController : RotationController
 {
 #pragma warning disable CS0649 // field nerver assigned
     [SerializeField]
-    private ManualRotationControllerData data;
+    private RotationProControllerData data;
 #pragma warning restore CS0649 // field nerver assigned
 
     IPadInput input;
@@ -18,8 +18,8 @@ public class ManualRotationController : RotationController
     {
         if (input.InputPressed)
         {
-            return Mathf.Min(Mathf.Max(input.Rotation * data.ZRotationSpeed, -data.MaximumZRotation), data.MaximumZRotation);
-
+            var inputClamped = Mathf.Clamp(input.Rotation, -data.ControlDepth, data.ControlDepth);
+            return ((inputClamped + data.ControlDepth) * data.MaxAngle / data.ControlDepth) - data.MaxAngle;
         }
         else
         {
