@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void ResetGame()
     {
-        //RandomiseBallStartPosition();
+        RandomiseBallStartPosition();
         ResetGameWorld();
         ResumeGameplay();
         Debug.Log("Game Started");

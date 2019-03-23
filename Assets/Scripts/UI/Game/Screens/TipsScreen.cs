@@ -40,16 +40,16 @@ namespace JustPingNoPong.UI
         }
 
 
-        public void OnEnable()
-        {
-            NextButton.interactable = false;
-            Invoke("EnableNext", ButtonsEnablingDelay);
-        }
+        //public void OnEnable()
+        //{
+        //    NextButton.interactable = false;
+        //    Invoke("EnableNext", ButtonsEnablingDelay);
+        //}
 
-        public void EnableNext()
-        {
-            NextButton.interactable = true;
-        }
+        //public void EnableNext()
+        //{
+        //    NextButton.interactable = true;
+        //}
 
         public void OnClickOnNext()
         {
@@ -57,7 +57,5 @@ namespace JustPingNoPong.UI
             Hide();
             UIManager.CloseTipsAndProceed();
         }
-
-
     }
 }

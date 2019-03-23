@@ -28,5 +28,10 @@ namespace JustPingNoPong.UI
             UIManager.ResumeGame();
         }
 
+        public void OnClickOnCheat()
+        {
+            Hide();
+            UIManager.ShowCheatPanel();
+        }
     }
 }

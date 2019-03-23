@@ -31,6 +31,11 @@ namespace JustPingNoPong.UI
         private Menu MenuPopup;
         [SerializeField]
         private PadSelectionWindow PadSelection;
+        [SerializeField]
+        private CheatPanel CheatPanel;
+        [Header("Balls")]
+        public List<Ball> Balls;
+        //public List<BallInfo> BallInfos;
         [Header("Pads")]
         public List<Pad> Pads;
         public List<PadInfo> Infos;
@@ -68,6 +73,7 @@ namespace JustPingNoPong.UI
             MissionWindow.Init(this);
             ResultsWindow.Init(this);
             PadSelection.Init(this);
+            CheatPanel.Init(this);
         }
 
         public void CloseTipsAndProceed()
@@ -77,6 +83,7 @@ namespace JustPingNoPong.UI
         }
 
         int padIndex = 0;
+        int ballIndex = 0;
 
         public int GetNextPadId()
         {
@@ -91,6 +98,7 @@ namespace JustPingNoPong.UI
         {
             return Infos[i];
         }
+
         public void FocusPad(int index)
         {
             padIndex = index;
@@ -99,10 +107,27 @@ namespace JustPingNoPong.UI
                 Pads[i].gameObject.SetActive(padIndex == i);
             }
         }
+        public void FocusBall(int index)
+        {
+            ballIndex = index;
+            for (int i = 0; i < Balls.Count; i++)
+            {
+                Balls[i].gameObject.SetActive(ballIndex == i);
+            }
+        }
         public void EquipPad(int i)
         {
             gameManager.EquipPad(Pads[i]);
             PadSelection.Hide();
+            cameraman.SetTrigger("CameraMain");
+            HUD.Show();
+            MissionWindow.ShowMission(gameManager.CurrentMission);
+        }
+
+        public void EquipBall(int i)
+        {
+            gameManager.EquipBall(Balls[i]);
+            //BallSelection.Hide();
             cameraman.SetTrigger("CameraMain");
             HUD.Show();
             MissionWindow.ShowMission(gameManager.CurrentMission);
@@ -120,6 +145,12 @@ namespace JustPingNoPong.UI
             CloseWindows();
 
             gameManager.ResumeGame();
+        }
+
+
+        public void ShowCheatPanel()
+        {
+            CheatPanel.Show();
         }
 
         public void ShowResults(Mission mission, int score, bool success)
@@ -161,6 +192,7 @@ namespace JustPingNoPong.UI
             MissionWindow.Hide();
             ResultsWindow.Hide();
             PadSelection.Hide();
+            CheatPanel.Hide();
         }
 
         #endregion
