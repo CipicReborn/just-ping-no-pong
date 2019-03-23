@@ -5,9 +5,10 @@ public class Ball : MonoBehaviour
     private WallsRebound reboundBehaviour;
     private Rigidbody rb;
     private Transform startTransform;
+#pragma warning disable CS0649 // field is never assigned to
     [SerializeField]
     private BallData Data;
-
+#pragma warning restore CS0649 // field is never assigned to
     private Vector3 velocityBeforePause;
     private Vector3 angularVelocityBeforePause;
 
@@ -43,6 +44,7 @@ public class Ball : MonoBehaviour
         rb.velocity = velocityBeforePause;
         rb.angularVelocity = angularVelocityBeforePause;
     }
+
     public void DisablePhysics()
     {
         velocityBeforePause = rb.velocity;
@@ -74,6 +76,7 @@ public class Ball : MonoBehaviour
 
     public void OnDrawGizmos()
     {
+        if (rb == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + rb.velocity);
     }

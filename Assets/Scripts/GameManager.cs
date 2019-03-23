@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour, IGameManager
     private void Update()
     {
         if (gameIsPaused) return;
-        
+
         // INPUT
         padInput.Refresh();
         
@@ -173,6 +173,10 @@ public class GameManager : MonoBehaviour, IGameManager
         }
     }
 
+    private void FixedUpdate()
+    {
+        Pad.TickPhysics(Time.deltaTime);
+    }
 
     private GameWorldBoundaries gameWorldBoundaries;
     private IPadInput padInput;
