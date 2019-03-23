@@ -3,11 +3,11 @@
 public class ReboundForce : MonoBehaviour
 {
     private PadData data;
-    private GameManager gameManager;
+    private Pad pad;
 
-    public void Init(GameManager gm, PadData data)
+    public void Init(Pad pad, PadData data)
     {
-        gameManager = gm;
+        this.pad = pad;
         this.data = data;
     }
 
@@ -15,8 +15,7 @@ public class ReboundForce : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ball"))
         {
-            col.rigidbody.AddForce(transform.up * data.ReboundForce);
-            gameManager.AddScoreForRebound(transform.position);
+            pad.BallContact(col.rigidbody, col.GetContact(0).point);
         }
     }
 
