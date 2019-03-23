@@ -29,6 +29,9 @@ public class Pad : MonoBehaviour
     private bool triggerContactFeedback;
     private bool contactFeedbackIsOn;
 
+    private bool triggerPhysicsOnContact;
+    private Rigidbody ballRigidBody;
+    
     public void Init(GameManager gm, IPadInput input, GameWorldBoundaries gwb, Transform startTransform)
     {
         Input = input;
@@ -50,6 +53,7 @@ public class Pad : MonoBehaviour
 
     public void Reset()
     {
+        Force = Vector3.zero;
         transform.position = startTransform.position;
         transform.rotation = startTransform.rotation;
     }
@@ -64,6 +68,18 @@ public class Pad : MonoBehaviour
         ContactFeedback(deltaTime);
     }
 
+    public Vector3 Force;
+    public void TickPhysics(float deltaTime)
+    {
+        if (triggerPhysicsOnContact)
+        {
+            triggerPhysicsOnContact = false;
+            Force = transform.up * Data.ReboundForce * deltaTime;
+            ballRigidBody.AddForce(Force, ForceMode.Impulse);
+            
+        }
+    }
+
     public float GetNormalisedXPosition()
     {
         return (transform.position.x + ScreenRightLimit) / (ScreenRightLimit * 2.0f);
@@ -71,6 +87,8 @@ public class Pad : MonoBehaviour
 
     public void BallContact(Rigidbody ball, Vector3 worldPosition)
     {
+        ballRigidBody = ball;
+        triggerPhysicsOnContact = true;
         triggerContactFeedback = true;
         gameManager.AddScoreForRebound(worldPosition);
     }
