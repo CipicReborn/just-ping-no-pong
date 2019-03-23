@@ -174,7 +174,7 @@ namespace JustPingNoPong.UI
 
         public void Quit()
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene(0);
         }
 
         #endregion
