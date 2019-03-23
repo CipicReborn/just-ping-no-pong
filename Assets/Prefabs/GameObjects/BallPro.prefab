@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 915107256}
   - component: {fileID: 3625886394539099314}
   - component: {fileID: 3625886394539099315}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BallPro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
