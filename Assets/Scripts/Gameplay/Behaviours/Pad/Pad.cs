@@ -16,15 +16,25 @@ public class Pad : MonoBehaviour
     private readonly float LerpFactor = 0.4f;
 
     //component
+    [SerializeField]
+    private PadModel PadModel;
     private PositionController positionController;
     private RotationController rotationController;
     private ReboundForce reboundBehaviour;
+
+    //other
+    private GameManager gameManager;
+    [SerializeField]
+    private float contactFeedbackDuration;
+    private bool triggerContactFeedback;
+    private bool contactFeedbackIsOn;
 
     public void Init(GameManager gm, IPadInput input, GameWorldBoundaries gwb, Transform startTransform)
     {
         Input = input;
         this.startTransform = startTransform;
 
+        gameManager = gm;
         gameWorldBoundaries = gwb;
 
         positionController = GetComponent<PositionController>();
@@ -34,7 +44,7 @@ public class Pad : MonoBehaviour
         rotationController.Init(this);
 
         reboundBehaviour = GetComponentInChildren<ReboundForce>();
-        reboundBehaviour.Init(gm, Data);
+        reboundBehaviour.Init(this, Data);
         
     }
 
@@ -44,18 +54,25 @@ public class Pad : MonoBehaviour
         transform.rotation = startTransform.rotation;
     }
 
-    public void Tick(Single deltaTime)
+    public void Tick(float deltaTime)
     {
         if (Input.InputPressed)
         {
             GoToTargetPosition();
         }
         GoToTargetRotation();
+        ContactFeedback(deltaTime);
     }
 
     public float GetNormalisedXPosition()
     {
         return (transform.position.x + ScreenRightLimit) / (ScreenRightLimit * 2.0f);
+    }
+
+    public void BallContact(Rigidbody ball, Vector3 worldPosition)
+    {
+        triggerContactFeedback = true;
+        gameManager.AddScoreForRebound(worldPosition);
     }
 
     private Vector3 GetTargetPosition()
@@ -77,5 +94,26 @@ public class Pad : MonoBehaviour
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, GetTargetRotation(), LerpFactor);
     }
+    float elapsedTimeContactFeedback;
 
+    private void ContactFeedback(float deltaTime)
+    {
+        if (triggerContactFeedback)
+        {
+            PadModel.SetContactZoneColor(Color.white);
+            triggerContactFeedback = false;
+            contactFeedbackIsOn = true;
+            elapsedTimeContactFeedback = 0;
+            return;
+        }
+        if (contactFeedbackIsOn)
+        {
+            elapsedTimeContactFeedback += deltaTime;
+            if (elapsedTimeContactFeedback > contactFeedbackDuration)
+            {
+                PadModel.ResetContactZoneColor();
+                contactFeedbackIsOn = false;
+            }
+        }
+    }
 }

@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: aec4aa12bc4555944bad952a27b7c857, type: 2}
+  PadModel: {fileID: 9163856628609291671}
+  contactFeedbackDuration: 0.12
+  count: 0
 --- !u!114 &3042002196525150671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +90,7 @@ GameObject:
   - component: {fileID: 925301887310255819}
   - component: {fileID: 925301887310255812}
   - component: {fileID: 925301887310255818}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PadCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,3 +211,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6967700592278072605}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9163856628609291671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2278453936209721482, guid: 3154f5b61023381458aeda6f884f17ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6967700592278072605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24c3d5d713c4394ba16cb2deea77c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
