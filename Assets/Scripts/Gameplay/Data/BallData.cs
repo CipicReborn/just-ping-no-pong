@@ -4,5 +4,6 @@
 public class BallData : ScriptableObject
 {
     public float Mass = 0.1f;
-    public float Radius = 0.3f;
+    public float Drag = 0.2f;
+    public float Radius = 1.0f;
 }

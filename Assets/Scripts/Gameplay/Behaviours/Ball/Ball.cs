@@ -26,6 +26,7 @@ public class Ball : MonoBehaviour
     {
 #if UNITY_EDITOR // for tuning
         rb.mass = Data.Mass;
+        rb.drag = Data.Drag;
         transform.localScale = new Vector3(Data.Radius, Data.Radius, Data.Radius);
 #endif
         reboundBehaviour.Tick();
