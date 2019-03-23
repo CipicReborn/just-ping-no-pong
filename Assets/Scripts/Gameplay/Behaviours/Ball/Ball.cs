@@ -71,4 +71,10 @@ public class Ball : MonoBehaviour
         velocityBeforePause = Vector3.zero;
         angularVelocityBeforePause = Vector3.zero;
     }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + rb.velocity);
+    }
 }

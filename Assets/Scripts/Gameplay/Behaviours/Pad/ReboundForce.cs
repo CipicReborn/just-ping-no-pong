@@ -19,4 +19,10 @@ public class ReboundForce : MonoBehaviour
             gameManager.AddScoreForRebound(transform.position);
         }
     }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + transform.up * 2);
+    }
 }
