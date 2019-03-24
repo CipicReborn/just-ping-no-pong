@@ -2,35 +2,78 @@
 
 public class Ball : MonoBehaviour
 {
-    private WallsRebound reboundBehaviour;
-    private Rigidbody rb;
-    private Transform startTransform;
 #pragma warning disable CS0649 // field is never assigned to
     [SerializeField]
     private BallData Data;
 #pragma warning restore CS0649 // field is never assigned to
-    private Vector3 velocityBeforePause;
-    private Vector3 angularVelocityBeforePause;
+
+    private GameManager gameManager;
+    private Transform startTransform;
+    private float xMax;
+
+    // PHYSICS
+    public float Radius { get { return Data.Diameter / 2.0f; } }
+    public float Mass { get { return Data.Mass; } }
+    public Vector3 Acceleration { get; private set; }
+    public Vector3 Velocity { get; private set; }
+    private Vector3 weightForce = Vector3.zero;
+    private Vector3 externalForces = Vector3.zero;
+    bool physicsIsEnabled;
 
     public void Init(GameManager gm, GameWorldBoundaries gameWorldBoundaries, Transform startTransform)
     {
+        gameManager = gm;
         this.startTransform = startTransform;
-        rb = GetComponent<Rigidbody>();
-        rb.mass = Data.Mass;
-        transform.localScale = new Vector3(Data.Radius, Data.Radius, Data.Radius);
-        reboundBehaviour = GetComponent<WallsRebound>();
-        reboundBehaviour.Init(gm, gameWorldBoundaries.ScreenRightLimit);
-        DisablePhysics();
+        transform.localScale = new Vector3(Data.Diameter, Data.Diameter, Data.Diameter);
+        xMax = gameWorldBoundaries.ScreenRightLimit - (transform.localScale.x / 2.0f);
+        PausePhysics();
+    }
+
+    public void AddForce(Vector3 force)
+    {
+        //force.z = 0;
+        //externalForces += force;
+        Velocity = force;
     }
 
     public void Tick(float deltaTime)
     {
 #if UNITY_EDITOR // for tuning
-        rb.mass = Data.Mass;
-        rb.drag = Data.Drag;
-        transform.localScale = new Vector3(Data.Radius, Data.Radius, Data.Radius);
+        transform.localScale = new Vector3(Data.Diameter, Data.Diameter, Data.Diameter);
 #endif
-        reboundBehaviour.Tick();
+    }
+
+    public void TickPhysics(float deltaTime)
+    {
+        if (!physicsIsEnabled) return;
+
+        weightForce = Data.Mass * Physics.gravity;
+
+        Acceleration = (weightForce + externalForces) / Data.Mass;
+        Velocity = ((1 - Data.Drag) * Velocity) + (Acceleration * deltaTime);
+        transform.position += Velocity * deltaTime;
+
+        //Debug.Log("Drag vs. Accel: -" + (velocity * 0.1f).ToString("0.0") + "+ " + (acceleration * deltaTime).ToString("0.0"));
+        externalForces = Vector3.zero;
+        
+        if (transform.position.y < 0)
+        {
+            gameManager.TriggerGameOver();
+            return;
+        }
+
+        if (transform.position.x < -xMax && Velocity.x < 0 ||
+            transform.position.x > xMax && Velocity.x > 0)
+        {
+            Debug.Log("Wall Hit");
+            Velocity = new Vector3(-Velocity.x, Velocity.y, Velocity.z);
+            gameManager.AddScoreForWalls(transform.position);
+        }
+    }
+
+    public void Enable()
+    {
+        gameObject.SetActive(true);
     }
 
     public void Disable()
@@ -38,27 +81,23 @@ public class Ball : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void EnablePhysics()
+    public void ResumePhysics()
     {
-        rb.isKinematic = false;
-        rb.velocity = velocityBeforePause;
-        rb.angularVelocity = angularVelocityBeforePause;
+        physicsIsEnabled = true;
+
     }
 
-    public void DisablePhysics()
+    public void PausePhysics()
     {
-        velocityBeforePause = rb.velocity;
-        angularVelocityBeforePause = rb.angularVelocity;
-        rb.isKinematic = true;
+        physicsIsEnabled = false;
     }
 
     public void Reset()
     {
-        gameObject.SetActive(true);
         ResetPhysics();
         ResetTransform();
+        Enable();
     }
-
 
     private void ResetTransform()
     {
@@ -68,16 +107,7 @@ public class Ball : MonoBehaviour
 
     private void ResetPhysics()
     {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        velocityBeforePause = Vector3.zero;
-        angularVelocityBeforePause = Vector3.zero;
-    }
-
-    public void OnDrawGizmos()
-    {
-        if (rb == null) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + rb.velocity);
+        Acceleration = Vector3.zero;
+        Velocity = Vector3.zero;
     }
 }

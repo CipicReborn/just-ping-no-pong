@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1db3ae2afa6b045be5926ad18a1b3e, type: 3}
   m_Name: Rotation - MasterController
   m_EditorClassIdentifier: 
-  MaxAngle: 45
+  MaxAngle: 90
   ControlDepth: 80
   Limit: 0.12
   SpinningSpeed: 3240

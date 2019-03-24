@@ -20,7 +20,7 @@ public class Pad : MonoBehaviour
     private PadModel PadModel;
     private PositionController positionController;
     private RotationController rotationController;
-    private ReboundForce reboundBehaviour;
+    private Rebound reboundBehaviour;
 
     //other
     private GameManager gameManager;
@@ -30,7 +30,7 @@ public class Pad : MonoBehaviour
     private bool contactFeedbackIsOn;
 
     private bool triggerPhysicsOnContact;
-    private Rigidbody ballRigidBody;
+    private Ball ball;
     
     public void Init(GameManager gm, IPadInput input, GameWorldBoundaries gwb, Transform startTransform)
     {
@@ -46,7 +46,7 @@ public class Pad : MonoBehaviour
         rotationController = GetComponent<RotationController>();
         rotationController.Init(this);
 
-        reboundBehaviour = GetComponentInChildren<ReboundForce>();
+        reboundBehaviour = GetComponentInChildren<Rebound>();
         reboundBehaviour.Init(this, Data);
         
     }
@@ -69,15 +69,23 @@ public class Pad : MonoBehaviour
     }
 
     public Vector3 Force;
+    private Vector3 tmpVelocity;
     public void TickPhysics(float deltaTime)
     {
         if (triggerPhysicsOnContact)
         {
             triggerPhysicsOnContact = false;
-            Force = transform.up * Data.ReboundForce * deltaTime;
-            ballRigidBody.AddForce(Force, ForceMode.Impulse);
-            
+            var side = reboundBehaviour.GetSideTransform(ball);
+            tmpVelocity = side.InverseTransformDirection(ball.Velocity);
+            Debug.Log("Magnitude before rebound = " + tmpVelocity.magnitude);
+            tmpVelocity.z *= -1;
+            tmpVelocity = side.TransformDirection(tmpVelocity);
+            tmpVelocity.z = 0;
+            tmpVelocity = tmpVelocity.normalized * Data.ReboundForce;
+            Debug.Log("Magnitude after rebound = " + tmpVelocity.magnitude);
+            ball.AddForce(tmpVelocity);
         }
+        reboundBehaviour.TickPhysics(deltaTime);
     }
 
     public float GetNormalisedXPosition()
@@ -85,9 +93,9 @@ public class Pad : MonoBehaviour
         return (transform.position.x + ScreenRightLimit) / (ScreenRightLimit * 2.0f);
     }
 
-    public void BallContact(Rigidbody ball, Vector3 worldPosition)
+    public void BallContact(Ball ball, Vector3 worldPosition)
     {
-        ballRigidBody = ball;
+        this.ball = ball;
         triggerPhysicsOnContact = true;
         triggerContactFeedback = true;
         gameManager.AddScoreForRebound(worldPosition);

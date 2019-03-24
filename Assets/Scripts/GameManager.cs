@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
     public void ResetGame()
     {
-        RandomiseBallStartPosition();
+        //RandomiseBallStartPosition();
         ResetGameWorld();
         ResumeGameplay();
         Debug.Log("Game Started");
@@ -175,7 +175,9 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void FixedUpdate()
     {
+        if (gameIsPaused || GameIsOver) return;
         Pad.TickPhysics(Time.deltaTime);
+        Ball.TickPhysics(Time.deltaTime);
     }
 
     private GameWorldBoundaries gameWorldBoundaries;
@@ -200,13 +202,13 @@ public class GameManager : MonoBehaviour, IGameManager
     private void PauseGameplay()
     {
         gameIsPaused = true;
-        Ball.DisablePhysics();
+        Ball.PausePhysics();
     }
 
     private void ResumeGameplay()
     {
         gameIsPaused = false;
-        Ball.EnablePhysics();
+        Ball.ResumePhysics();
     }
 
     private void RandomiseBallStartPosition()

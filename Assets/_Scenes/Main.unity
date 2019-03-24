@@ -191,12 +191,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11814163}
   m_CullTransparentMesh: 0
---- !u!54 &14552591 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 3625886394539099315, guid: f4ab7c425893429488e4118c0238369c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1402016387}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &17878657 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7383687573456052077, guid: 499ab5ee97851884aac8fcbce061cbd0,
@@ -262,7 +256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &63164137
 RectTransform:
   m_ObjectHideFlags: 0
@@ -633,9 +627,30 @@ PrefabInstance:
     - target: {fileID: 3625886394539099315, guid: 0dcc8b9608585124ea41645880ad896d,
         type: 3}
       propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3625886394539099315, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: 0dcc8b9608585124ea41645880ad896d,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3625886394539099320, guid: 0dcc8b9608585124ea41645880ad896d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0dcc8b9608585124ea41645880ad896d, type: 3}
 --- !u!4 &173175093 stripped
 Transform:
@@ -2060,7 +2075,7 @@ MonoBehaviour:
   PlayerData: {fileID: 11400000, guid: 67606b815dc5fac4b8816731d67406a7, type: 2}
   GameDesignData: {fileID: 11400000, guid: 89c46ba83451d524db1743389f716d66, type: 2}
   Pad: {fileID: 2071339981}
-  Ball: {fileID: 168604809}
+  Ball: {fileID: 915107262}
   PadStartTransform: {fileID: 115861203}
   BallStartTransform: {fileID: 559530114}
   Camera: {fileID: 534669904}
@@ -2170,7 +2185,7 @@ MonoBehaviour:
   PaddingLeft: 20
   Spacing: 0
   Target: {fileID: 2071339981}
-  Ball: {fileID: 14552591}
+  Ball: {fileID: 168604809}
 --- !u!1 &724200606
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,7 +3476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1393501616
 Transform:
   m_ObjectHideFlags: 0
@@ -3587,7 +3602,12 @@ PrefabInstance:
     - target: {fileID: 3625886394539099312, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099323, guid: f4ab7c425893429488e4118c0238369c,
+        type: 3}
+      propertyPath: Drag
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 3625886394539099327, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
@@ -3662,9 +3682,30 @@ PrefabInstance:
     - target: {fileID: 3625886394539099315, guid: f4ab7c425893429488e4118c0238369c,
         type: 3}
       propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: f4ab7c425893429488e4118c0238369c,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: f4ab7c425893429488e4118c0238369c,
+        type: 3}
+      propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3625886394539099315, guid: f4ab7c425893429488e4118c0238369c,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: f4ab7c425893429488e4118c0238369c,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3625886394539099320, guid: f4ab7c425893429488e4118c0238369c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f4ab7c425893429488e4118c0238369c, type: 3}
 --- !u!1 &1402284092
 GameObject:
@@ -7630,7 +7671,7 @@ PrefabInstance:
     - target: {fileID: 3625886394539099312, guid: b669fc97ca2186c44805473585dd6a7e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3625886394539099327, guid: b669fc97ca2186c44805473585dd6a7e,
         type: 3}
@@ -7690,14 +7731,30 @@ PrefabInstance:
     - target: {fileID: 3625886394539099315, guid: b669fc97ca2186c44805473585dd6a7e,
         type: 3}
       propertyPath: m_CollisionDetection
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3625886394539099315, guid: b669fc97ca2186c44805473585dd6a7e,
         type: 3}
       propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: b669fc97ca2186c44805473585dd6a7e,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625886394539099315, guid: b669fc97ca2186c44805473585dd6a7e,
+        type: 3}
+      propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3625886394539099315, guid: b669fc97ca2186c44805473585dd6a7e,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3625886394539099320, guid: b669fc97ca2186c44805473585dd6a7e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b669fc97ca2186c44805473585dd6a7e, type: 3}
 --- !u!4 &4817287085216318714 stripped
 Transform:

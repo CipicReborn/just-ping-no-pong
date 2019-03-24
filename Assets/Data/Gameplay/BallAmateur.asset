@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a37e5a447b8d36409840f978438c603, type: 3}
   m_Name: BallAmateur
   m_EditorClassIdentifier: 
-  Mass: 0.07
-  Drag: 0.6
+  Mass: 0.035
+  Drag: 0
   Radius: 1
