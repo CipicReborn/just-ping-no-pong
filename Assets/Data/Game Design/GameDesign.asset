@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: GameDesign
   m_EditorClassIdentifier: 
   Missions:
+  - DescriptionText: "Le concours de NoPong est ouvert ! Tu devrais t'entra\xEEner
+      un peu avant d'acheter un ticket. Fais au moins  <color=#fff33f>10 points !</color>"
+    ReminderText: Fais au moins <color=#fff33f>10 points</color>
+    ScoreTarget: 10
+    Reward: {fileID: 11400000, guid: 830c331062defe6479232c94fea0c8dc, type: 2}
+  - DescriptionText: "Enfin dans le concours ! Mais la raquette de grand-p\xE8re n'est
+      pas terrible. Fais au moins <color=#fff33f>15 points</color> pour acheter une
+      meilleure raquette."
+    ReminderText: Fais au moins <color=#fff33f>15 points</color>
+    ScoreTarget: 15
+    Reward: {fileID: 11400000, guid: fd14c19b4a266e94daa8164a49274a38, type: 2}
   - DescriptionText: Demonstrate your mastery and reach <color=#fff33f>a score of
       10</color>!
     ReminderText: Reach <color=#fff33f>a score of 10</color>
-    ScoreTarget: 10
+    ScoreTarget: 15
     Reward: {fileID: 11400000, guid: b34efecc26ae55d4ea4dd54f24459742, type: 2}

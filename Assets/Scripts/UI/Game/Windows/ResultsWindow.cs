@@ -75,11 +75,13 @@ namespace JustPingNoPong.UI
         public override void Show()
         {
             SetActive(true);
+            Debug.Log("Show Results");
         }
 
         public override void Hide()
         {
             SetActive(false);
+            Debug.Log("Hide Results");
         }
     }
 }
