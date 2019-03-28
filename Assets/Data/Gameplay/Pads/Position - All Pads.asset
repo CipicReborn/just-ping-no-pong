@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c14d1ba18686c4e99095e43452835d, type: 3}
   m_Name: Position - All Pads
   m_EditorClassIdentifier: 
-  PadLength: 0.5
+  PadLength: 0.75
   PadWidth: 0.5

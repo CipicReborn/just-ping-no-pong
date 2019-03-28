@@ -78,8 +78,8 @@ namespace JustPingNoPong.UI
 
         public void CloseTipsAndProceed()
         {
-            cameraman.SetTrigger("CameraPad");
-            PadSelection.Show();
+            HUD.Show();
+            MissionWindow.ShowMission(gameManager.CurrentMission);
         }
 
         int padIndex = 0;
@@ -161,6 +161,14 @@ namespace JustPingNoPong.UI
         public void ShowMenu()
         {
             MenuPopup.Show();
+        }
+
+        public void ShowEquipment()
+        {
+            HUD.Hide();
+            CloseWindows();
+            cameraman.SetTrigger("CameraPad");
+            PadSelection.Show();
         }
 
         public void ResetGame()

@@ -77,12 +77,12 @@ public class Pad : MonoBehaviour
             triggerPhysicsOnContact = false;
             var side = reboundBehaviour.GetSideTransform(ball);
             tmpVelocity = side.InverseTransformDirection(ball.Velocity);
-            Debug.Log("Magnitude before rebound = " + tmpVelocity.magnitude);
+            //Debug.Log("Magnitude before rebound = " + tmpVelocity.magnitude);
             tmpVelocity.z *= -1;
             tmpVelocity = side.TransformDirection(tmpVelocity);
             tmpVelocity.z = 0;
             tmpVelocity = tmpVelocity.normalized * Data.ReboundForce;
-            Debug.Log("Magnitude after rebound = " + tmpVelocity.magnitude);
+            //Debug.Log("Magnitude after rebound = " + tmpVelocity.magnitude);
             ball.AddForce(tmpVelocity);
         }
         reboundBehaviour.TickPhysics(deltaTime);

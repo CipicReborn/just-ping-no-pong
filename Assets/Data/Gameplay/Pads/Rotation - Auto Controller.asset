@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ceba96a0c0db241807ab4dbdfbbdb5, type: 3}
   m_Name: Rotation - Auto Controller
   m_EditorClassIdentifier: 
-  MaxAngle: 10
+  MaxAngle: 8

@@ -20,6 +20,11 @@ namespace JustPingNoPong.UI
             UIManager.Quit();
         }
 
+        public void OnClickOnEquip()
+        {
+            UIManager.ShowEquipment();
+        }
+
         public void OnClickOnRestart()
         {
             UIManager.ResetGame();

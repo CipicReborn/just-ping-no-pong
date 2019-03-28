@@ -17,7 +17,7 @@ public class PadSelectionWindow : Window
     
     private void Awake()
     {
-        Show();
+        //Show();
     }
 
     int currentPadId = 0;
